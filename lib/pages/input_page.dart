@@ -1,38 +1,19 @@
 import 'package:flutter/material.dart';
 import 'bus_details.dart';
+import '../widget/bus_tile.dart';
 
-class InputPage extends StatelessWidget {
+class InputPage extends StatefulWidget {
+  @override
+  _InputPageState createState() => _InputPageState();
+}
+
+class _InputPageState extends State<InputPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              CircleAvatar(
-                radius: 25.0,
-                backgroundColor: Color(0xff3f51b5),
-                child: IconButton(
-                  icon: Icon(
-                    Icons.list,
-                    color: Colors.white,
-                  ),
-                  iconSize: 35.0,
-                ),
-              ),
-              Text(
-                'Local Bus Dhaka route',
-                style: TextStyle(
-                  fontSize: 23,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.white,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
           Padding(
             padding: const EdgeInsets.only(top: 10, left: 10),
             child: Text(
@@ -104,22 +85,29 @@ class InputPage extends StatelessWidget {
                   itemCount: 10,
                   itemBuilder: (context, index) {
                     return Padding(
-                      padding: const EdgeInsets.only(left: 10.0,right: 10.0,top: 8.0,bottom: 8.0),
+                      padding: const EdgeInsets.only(
+                          left: 10.0, right: 10.0, top: 8.0, bottom: 8.0),
                       child: Container(
                         height: 60,
                         decoration: BoxDecoration(
                             color: Colors.white,
                             shape: BoxShape.rectangle,
                             borderRadius: BorderRadius.circular(10.0)),
-                        child: ListTile(
-                          title: Text('7 No Bus'),
-                          leading: Icon(Icons.directions_bus),
-                          trailing: Text('Local'),
-                          subtitle: Text('Gabtoli - Zatrabari'),
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>BusDetails()));
-                          },
+                        child: BusTile(
+                          name: '7 No Bus',
+                          type: 'Local',
+                          source: 'Gabtoli',
+                          destination: 'Zatrabari',
                         ),
+//                        ListTile(
+//                          title: Text('7 No Bus'),
+//                          leading: Icon(Icons.directions_bus),
+//                          trailing: Text('Local'),
+//                          subtitle: Text('Gabtoli - Zatrabari'),
+//                          onTap: () {
+//                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>BusDetails()));
+//                          },
+//                        ),
                       ),
                     );
                   }),

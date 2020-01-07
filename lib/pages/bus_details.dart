@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../constant.dart';
 
 class BusDetails extends StatelessWidget {
   Widget _buildBusIntro() {
@@ -36,7 +37,8 @@ class BusDetails extends StatelessWidget {
       child: busChild,
       height: cardHeight,
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.yellowAccent, width: 3),  // or Colors.grey
+        border:
+            Border.all(color: Colors.yellowAccent, width: 3), // or Colors.grey
         shape: BoxShape.rectangle,
         borderRadius: BorderRadius.circular(10.0),
       ),
@@ -44,11 +46,14 @@ class BusDetails extends StatelessWidget {
     );
   }
 
-  Widget _buildBusStopages({String stopageName,int index}) {
+  Widget _buildBusStopages({String stopageName, int index}) {
     return Container(
       child: Column(
         children: <Widget>[
-          Text(stopageName,style: TextStyle(fontSize: 18),),
+          Text(
+            stopageName,
+            style: TextStyle(fontSize: 18),
+          ),
           Icon(index != 9 ? Icons.arrow_downward : null),
         ],
       ),
@@ -64,13 +69,10 @@ class BusDetails extends StatelessWidget {
       ),
       body: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-              colors: [Colors.blue, Colors.lightGreenAccent],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              stops: [0.0, 0.8]),
+          gradient: KConstant.buildGradient(
+              firstColor: Colors.indigo, secondColor: Colors.lightGreenAccent),
         ),
-       // or color: Colors.white70,
+        // or color: Colors.white70,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -81,7 +83,9 @@ class BusDetails extends StatelessWidget {
                 busChild: ListView.builder(
                     itemCount: 10,
                     itemBuilder: (context, index) {
-                      return Center(child: _buildBusStopages(stopageName: 'Gabtoli',index: index));
+                      return Center(
+                          child: _buildBusStopages(
+                              stopageName: 'Gabtoli', index: index));
                     }),
               ),
             ),
