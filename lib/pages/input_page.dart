@@ -8,6 +8,18 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+
+  final double labelTextFontSizePortrait = 20;
+  final double labelTextFontSizeLandscape = 15;
+  final double textFieldContainerHeightPortrait = 50.0;
+  final double textFieldContainerHeightLandscape = 32.0;
+  final double textFieldSizedBoxHeightPortrait = 10.0;
+  final double textFieldSizedBoxHeightLandscape = 5.0;
+  final double beforeBusListSizedBoxHeightPortrait = 15.0;
+  final double beforeBusListSizedBoxHeightLandscape = 6.0;
+  final double busTileContainerHeightPortrait = 60.0;
+  final double busTileContainerHeightLandscape = 55.0;
+
   @override
   Widget build(BuildContext context) {
     var isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
@@ -37,17 +49,6 @@ class _InputPageState extends State<InputPage> {
         right: originalWidth * 0.05,
         top: originalHeight * 0.001,
         bottom: originalHeight * 0.01);
-
-    double labelTextFontSizePortrait = 20;
-    double labelTextFontSizeLandscape = 15;
-    double textFeildContainerHeightPortrait = 50.0;
-    double textFeildContainerHeightLandscape = 32.0;
-    double textFeildSizedBoxHeightPortrait = 10.0;
-    double textFeildSizedBoxHeightLandscape = 5.0;
-    double beforeBusListSizedBoxHeightPortrait = 15.0;
-    double beforeBusListSizedBoxHeightLandscape = 6.0;
-    double busTileContainerHeightPortrait = 60.0;
-    double busTileContainerHeightLandscape = 55.0;
 
     print(isPortrait);
     print(originalHeight);
@@ -82,8 +83,8 @@ class _InputPageState extends State<InputPage> {
               //source container
               Container(
                 height: isPortrait
-                    ? textFeildContainerHeightPortrait
-                    : textFeildContainerHeightLandscape,
+                    ? textFieldContainerHeightPortrait
+                    : textFieldContainerHeightLandscape,
                 child: TextField(
                   decoration: InputDecoration(
                       icon: Icon(
@@ -101,14 +102,14 @@ class _InputPageState extends State<InputPage> {
               ),
               SizedBox(
                 height: isPortrait
-                    ? textFeildSizedBoxHeightPortrait
-                    : textFeildSizedBoxHeightLandscape,
+                    ? textFieldSizedBoxHeightPortrait
+                    : textFieldSizedBoxHeightLandscape,
               ),
               //Destination Container
               Container(
                 height: isPortrait
-                    ? textFeildContainerHeightPortrait
-                    : textFeildContainerHeightLandscape,
+                    ? textFieldContainerHeightPortrait
+                    : textFieldContainerHeightLandscape,
                 child: TextField(
                   decoration: InputDecoration(
                       icon: Icon(
