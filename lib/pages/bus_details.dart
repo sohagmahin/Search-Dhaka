@@ -2,14 +2,25 @@ import 'package:flutter/material.dart';
 import '../constant.dart';
 
 class BusDetails extends StatelessWidget {
-  Widget _buildBusIntro() {
+  final double busProfileContainerHeightPortrait = 100;
+  final double busProfileContainerWidthPortrait = 100;
+  final double busProfileContainerHeightLandscape = 70;
+  final double busProfileContainerWidthLandscape = 70;
+  final double busIntroCardContainerheightPortrait = 200;
+  final double busIntroCardContainerheightLandscape = 125;
+
+  Widget _buildBusIntro({bool isPortraitMode}) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Container(
-          height: 100,
-          width: 100,
+          height: isPortraitMode
+              ? busProfileContainerHeightPortrait
+              : busProfileContainerHeightLandscape,
+          width: isPortraitMode
+              ? busProfileContainerWidthPortrait
+              : busProfileContainerWidthLandscape,
           child: Icon(
             Icons.directions_bus,
             size: 50,
@@ -21,7 +32,7 @@ class BusDetails extends StatelessWidget {
         ),
         Text(
           '7 No Bus',
-          style: TextStyle(fontSize: 30),
+          style: TextStyle(fontSize: isPortraitMode ? 30 : 20),
         ),
         Text(
           'Gabtoli - Zatrabari',
@@ -62,6 +73,7 @@ class BusDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
     return Scaffold(
       appBar: AppBar(
         title: Text('Bus details'),
@@ -77,7 +89,13 @@ class BusDetails extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            _buildCard(busChild: _buildBusIntro(), cardHeight: 200),
+            //Bus into card
+            _buildCard(
+                busChild: _buildBusIntro(isPortraitMode: isPortrait),
+                cardHeight: isPortrait
+                    ? busIntroCardContainerheightPortrait
+                    : busIntroCardContainerheightLandscape),
+            //Bus Stopage list
             Expanded(
               child: _buildCard(
                 busChild: ListView.builder(
