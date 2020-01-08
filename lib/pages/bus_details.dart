@@ -2,6 +2,13 @@ import 'package:flutter/material.dart';
 import '../constant.dart';
 
 class BusDetails extends StatelessWidget {
+  final String busName;
+  final String sourceName;
+  final String destinationName;
+  final List stopageList;
+  BusDetails(
+      {this.busName, this.sourceName, this.destinationName, this.stopageList});
+
   final double busProfileContainerHeight = 100;
   final double busProfileContainerWidth = 100;
 
@@ -23,11 +30,11 @@ class BusDetails extends StatelessWidget {
           ),
         ),
         Text(
-          '7 No Bus',
+          busName,
           style: TextStyle(fontSize: 30),
         ),
         Text(
-          'Gabtoli - Zatrabari',
+          '$sourceName - $destinationName',
           style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
         )
       ],
@@ -49,7 +56,7 @@ class BusDetails extends StatelessWidget {
     );
   }
 
-  Widget _buildBusStopages({String stopageName, int index}) {
+  Widget _buildBusStopagesName({String stopageName, int index}) {
     return Container(
       child: Column(
         children: <Widget>[
@@ -57,7 +64,7 @@ class BusDetails extends StatelessWidget {
             stopageName,
             style: TextStyle(fontSize: 18),
           ),
-          Icon(index != 9 ? Icons.arrow_downward : null),
+          Icon(index != (stopageList.length - 1) ? Icons.arrow_downward : null),
         ],
       ),
     );
@@ -86,11 +93,11 @@ class BusDetails extends StatelessWidget {
             Expanded(
               child: _buildCard(
                 busChild: ListView.builder(
-                    itemCount: 10,
+                    itemCount: stopageList.length,
                     itemBuilder: (context, index) {
                       return Center(
-                          child: _buildBusStopages(
-                              stopageName: 'Gabtoli', index: index));
+                          child: _buildBusStopagesName(
+                              stopageName: stopageList[index], index: index));
                     }),
               ),
             ),

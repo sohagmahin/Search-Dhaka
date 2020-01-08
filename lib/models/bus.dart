@@ -5,9 +5,11 @@ class Bus {
   final String type;
   final List<String> stopageList;
   final File image=null;
-  final Location source;
-  final Location destination;
+  final String sourceName;
+  final String destinationName;
+  final Location sourceLocation;
+  final Location destinationLocation;
 
-  Bus({this.name,this.type,this.stopageList,this.source,this.destination});
+  Bus({this.name,this.type,this.stopageList,this.sourceName,this.destinationName,this.sourceLocation,this.destinationLocation});
   
 }

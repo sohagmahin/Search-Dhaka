@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:autocomplete_textfield/autocomplete_textfield.dart';
+import 'package:provider/provider.dart';
+import '../provider/bus_list_provider.dart';
 
 class SourceDestinationTextField extends StatefulWidget {
   @override
@@ -23,38 +25,23 @@ class _SourceDestinationTextFieldState
   final double textFieldSizedBoxHeight = 10.0;
 
   List<String> suggestions = [
-    "Apple",
-    "Armidillo",
-    "Actual",
-    "Actuary",
-    "America",
-    "Argentina",
-    "Australia",
-    "Antarctica",
-    "Blueberry",
-    "Cheese",
-    "Danish",
-    "Eclair",
-    "Fudge",
-    "Granola",
-    "Hazelnut",
-    "Ice Cream",
-    "Jely",
-    "Kiwi Fruit",
-    "Lamb",
-    "Macadamia",
-    "Nachos",
-    "Oatmeal",
-    "Palm Oil",
-    "Quail",
-    "Rabbit",
-    "Salad",
-    "T-Bone Steak",
-    "Urid Dal",
-    "Vanilla",
-    "Waffles",
-    "Yam",
-    "Zest"
+    'Gabtoli',
+    'Technical',
+    'Kallyanpur',
+    'Shamoli',
+    'CollageGate',
+    'Farmget',
+    'Zatrabari',
+    'Dhamrai',
+    'Savar',
+    'Mirpur 1',
+    'Dhanmondi 27',
+    'Dhanmoni 32',
+    'Shabag',
+    'Mohammadpur',
+    'Agergou',
+    'Mirpur 10',
+    'Uttara',
   ];
 
   Widget sourceTextField() {
@@ -116,9 +103,13 @@ class _SourceDestinationTextFieldState
   void _onSubmittedForm() {
     if (textEditingControllerSource.text != "" &&
         textEditingControllerDestination.text != "") {
+      Provider.of<BusListProvider>(context,listen: false).onTap(
+          source: textEditingControllerSource.text,
+          destination: textEditingControllerDestination.text);
       print('TextField is not empty');
     } else {
       print('TextField is empty!');
+      return;
     }
   }
 

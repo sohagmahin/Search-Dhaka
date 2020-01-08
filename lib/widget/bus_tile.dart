@@ -7,7 +7,8 @@ class BusTile extends StatelessWidget {
   final String type;
   final String source;
   final String destination;
-  BusTile({this.name,this.type,this.source,this.destination});
+  final List stopageList;
+  BusTile({this.name,this.type,this.source,this.destination,this.stopageList});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class BusTile extends StatelessWidget {
       subtitle: Text(source + ' - ' + destination),
       onTap: () {
         Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => BusDetails()));
+            MaterialPageRoute(builder: (context) => BusDetails(busName: name,sourceName: source,destinationName: destination,stopageList: stopageList,)));
       },
     );
   }
