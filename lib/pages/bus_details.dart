@@ -2,25 +2,17 @@ import 'package:flutter/material.dart';
 import '../constant.dart';
 
 class BusDetails extends StatelessWidget {
-  final double busProfileContainerHeightPortrait = 100;
-  final double busProfileContainerWidthPortrait = 100;
-  final double busProfileContainerHeightLandscape = 70;
-  final double busProfileContainerWidthLandscape = 70;
-  final double busIntroCardContainerheightPortrait = 200;
-  final double busIntroCardContainerheightLandscape = 125;
+  final double busProfileContainerHeight = 100;
+  final double busProfileContainerWidth = 100;
 
-  Widget _buildBusIntro({bool isPortraitMode}) {
+  Widget _buildBusIntro() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Container(
-          height: isPortraitMode
-              ? busProfileContainerHeightPortrait
-              : busProfileContainerHeightLandscape,
-          width: isPortraitMode
-              ? busProfileContainerWidthPortrait
-              : busProfileContainerWidthLandscape,
+          height: 100.0,
+          width: 100.0,
           child: Icon(
             Icons.directions_bus,
             size: 50,
@@ -32,7 +24,7 @@ class BusDetails extends StatelessWidget {
         ),
         Text(
           '7 No Bus',
-          style: TextStyle(fontSize: isPortraitMode ? 30 : 20),
+          style: TextStyle(fontSize: 30),
         ),
         Text(
           'Gabtoli - Zatrabari',
@@ -73,7 +65,6 @@ class BusDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
     return Scaffold(
       appBar: AppBar(
         title: Text('Bus details'),
@@ -90,11 +81,7 @@ class BusDetails extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             //Bus into card
-            _buildCard(
-                busChild: _buildBusIntro(isPortraitMode: isPortrait),
-                cardHeight: isPortrait
-                    ? busIntroCardContainerheightPortrait
-                    : busIntroCardContainerheightLandscape),
+            _buildCard(busChild: _buildBusIntro(), cardHeight: 200.0),
             //Bus Stopage list
             Expanded(
               child: _buildCard(
