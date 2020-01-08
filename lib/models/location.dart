@@ -1,6 +1,6 @@
 class Location{
-  final String place_name;
+  final String placeName;
   final double latitude;
-  final double longlitude;
-  Location({this.place_name,this.latitude,this.longlitude});
+  final double longitude;
+  Location({this.placeName,this.latitude,this.longitude});
 }
