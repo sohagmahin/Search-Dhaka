@@ -61,7 +61,6 @@ class _HomePageState extends State<HomePage> {
         onTap: (select) {
           setState(() {
             selected = select;
-            print(selected);
           });
         },
       ),
