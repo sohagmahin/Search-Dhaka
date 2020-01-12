@@ -6,7 +6,7 @@ import '../helpers/helper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class BusListProvider extends ChangeNotifier {
-  bool _isStore = false;
+  bool _isOpenFirstTime = false;
   bool _isReloaded = true;
   List<Bus> _busList = [];
 
@@ -137,7 +137,8 @@ class BusListProvider extends ChangeNotifier {
 
   //Data Fetching & Store related method
 
-  void isOpenFirstTime() async {
+
+  void loadData() async {
     /*this method basically checking this app is open firstime.
   If open first time then loaded the all data from online & store on the Local database
   If not open first time then loaded the data from Local Database */
@@ -146,8 +147,8 @@ class BusListProvider extends ChangeNotifier {
     final SharedPreferences pref = await SharedPreferences.getInstance();
     print('Pref : ' + pref.get('isStore').toString());
 
-    if (pref.getBool('isStore') != null) {
-      _isStore = pref.getBool('isStore');
+    if (pref.getBool('OpenFlag') != null) {
+      _isOpenFirstTime = pref.getBool('OpenFlag');
 
       if (_isReloaded) {
         //Is used for avoiding recall the retriveDataFromLocalDB function
@@ -156,11 +157,11 @@ class BusListProvider extends ChangeNotifier {
         _isReloaded = false;
       }
     } else {
-      pref.setBool('isStore', true);
+      pref.setBool('OpenFlag', true);
       // fetchDataFromFirebase();
       insertDataIntoLocalDB();
       retriveDataFromLocalDB();
-      _isStore = true;
+      _isOpenFirstTime = true;
       notifyListeners();
     }
   }
