@@ -31,7 +31,8 @@ class _SourceDestinationTextFieldState
     'Shamoli',
     'CollageGate',
     'Farmget',
-    'Zatrabari',
+    'Sadarghat',
+    'Jatrabari',
     'Dhamrai',
     'Savar',
     'Mirpur 1',
@@ -42,6 +43,7 @@ class _SourceDestinationTextFieldState
     'Agergou',
     'Mirpur 10',
     'Uttara',
+    'Abdullahpur'
   ];
 
   Widget sourceTextField() {
