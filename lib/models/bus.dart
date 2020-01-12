@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'location.dart';
 class Bus {
+  final String id;
   final String name;
   final String type;
   final List<String> stopageList;
@@ -10,6 +11,6 @@ class Bus {
   final Location sourceLocation;
   final Location destinationLocation;
 
-  Bus({this.name,this.type,this.stopageList,this.sourceName,this.destinationName,this.sourceLocation,this.destinationLocation});
+  Bus({this.id,this.name,this.type,this.stopageList,this.sourceName,this.destinationName,this.sourceLocation,this.destinationLocation});
   
 }
