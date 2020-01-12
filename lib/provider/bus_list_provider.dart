@@ -125,7 +125,6 @@ class BusListProvider extends ChangeNotifier {
   void searchBus({String sourceName, String destinationName}) {
     List<Bus> tempList = [];
     for (Bus bus in _busList) {
-      print(!bus.stopageList.contains(sourceName));
       if (bus.stopageList.contains(sourceName) &&
           bus.stopageList.contains(destinationName)) {
         tempList.add(bus);
@@ -145,7 +144,7 @@ class BusListProvider extends ChangeNotifier {
 
     //SharedPreferences used for keep the app open information
     final SharedPreferences pref = await SharedPreferences.getInstance();
-    print('Pref : ' + pref.get('isStore').toString());
+    print('Pref : ' + pref.get('OpenFlag').toString());
 
     if (pref.getBool('OpenFlag') != null) {
       _isOpenFirstTime = pref.getBool('OpenFlag');
