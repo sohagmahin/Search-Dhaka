@@ -102,6 +102,10 @@ class BusListProvider extends ChangeNotifier {
     ),
   ];
 
+  bool get isLoading{
+    return _isLoading;
+  }
+
   List<Bus> _selectedBusList = [];
 
   int get selectedBusCount {
@@ -171,7 +175,7 @@ class BusListProvider extends ChangeNotifier {
   Future fetchDataFromFirebase() async {
     //fetch data from firebase then insert into list;
       _isLoading = true;
-      // notifyListeners();
+      notifyListeners();
       String url = 'https://local-bus-8c5eb.firebaseio.com/buslist.json';
       http.Response response = await http.get(url);
       Map<String, dynamic> fetchBusList = json.decode(response.body);
@@ -225,6 +229,8 @@ class BusListProvider extends ChangeNotifier {
   }
 
   void retriveDataFromLocalDB() async {
+    _isLoading = true;
+    notifyListeners();
     List<Map<String, dynamic>> list =
         await DBhelpers.getData(tableName: 'bus_list');
     _busList = list.map((bus) {
@@ -246,5 +252,7 @@ class BusListProvider extends ChangeNotifier {
       );
     }).toList();
     print('Retrive the data from local DB');
+    _isLoading = false;
+    notifyListeners();
   }
 }
