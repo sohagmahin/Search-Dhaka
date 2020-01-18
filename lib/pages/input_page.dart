@@ -62,11 +62,14 @@ class _InputPageState extends State<InputPage> {
         Expanded(
           child: Container(
             padding: EdgeInsets.only(top: originalHeight * 0.014),
+            margin: EdgeInsets.only(left: 15,right: 15),
             decoration: BoxDecoration(
               color: Color(0xffe1e2e1),
               borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30.0),
-                  topRight: Radius.circular(30.0)),
+                  topLeft: Radius.circular(20.0),
+                  topRight: Radius.circular(20.0),
+              bottomLeft: Radius.circular(20.0),
+              bottomRight: Radius.circular(20.0)),
               shape: BoxShape.rectangle,
             ),
             child: BusList(
