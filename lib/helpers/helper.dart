@@ -8,7 +8,12 @@ class Helper {
   }
 
  static List<String> stringToList(String str) {
-    var tempStr = str.split(", ");//Be careful. coz this "," & this ", " are not same.
+    var tempStr = str.split(",");
     return tempStr;
   }
+
+ static List<String> stringToListForLocalDB(String str) {
+   var tempStr = str.split(", ");
+   return tempStr;
+ }
 }
