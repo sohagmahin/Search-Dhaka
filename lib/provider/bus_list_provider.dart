@@ -4,13 +4,16 @@ import '../models/bus.dart';
 import '../helpers/DBhelpers.dart';
 import '../helpers/helper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class BusListProvider extends ChangeNotifier {
+  bool _isLoading = false;
   bool _isOpenFirstTime = false;
   bool _isReloaded = true;
   List<Bus> _busList = [];
 
-  List<Bus> tempList = [
+  List<Bus> dummyData = [
     Bus(
       id: '01',
       name: '7 No Bus',
@@ -150,28 +153,62 @@ class BusListProvider extends ChangeNotifier {
       _isOpenFirstTime = pref.getBool('OpenFlag');
 
       if (_isReloaded) {
-        //Is used for avoiding recall the retriveDataFromLocalDB function
+        //It used for avoiding recall the retriveDataFromLocalDB function
         retriveDataFromLocalDB();
         print('inside isReloaded');
         _isReloaded = false;
       }
     } else {
       pref.setBool('OpenFlag', true);
-      // fetchDataFromFirebase();
+      await fetchDataFromFirebase();
       insertDataIntoLocalDB();
-      retriveDataFromLocalDB();
       _isOpenFirstTime = true;
+      _isReloaded= false;
       notifyListeners();
     }
   }
 
-  void fetchDataFromFirebase() {
+  Future fetchDataFromFirebase() async {
     //fetch data from firebase then insert into list;
-    return;
+      _isLoading = true;
+      // notifyListeners();
+      String url = 'https://local-bus-8c5eb.firebaseio.com/buslist.json';
+      http.Response response = await http.get(url);
+      Map<String, dynamic> fetchBusList = json.decode(response.body);
+      if (fetchBusList == null) {
+        _isLoading = false;
+        notifyListeners();
+        return;
+      }
+      fetchBusList.forEach((String key, dynamic fetchBus) {
+        final Bus bus = Bus(
+          id: key,
+          name: fetchBus['name'].toString(),
+          type: fetchBus['type'].toString(),
+          sourceName: fetchBus['sourceName'].toString(),
+          destinationName: fetchBus['destinationName'].toString(),
+          stopageList: Helper.stringToList(fetchBus['stopageList'].toString()),
+          sourceLocation: Location(
+            placeName: fetchBus['sourceName'],
+            latitude: double.parse(fetchBus['sourceLatitude'].toString()),
+            longitude: double.parse(fetchBus['sourceLongitude'].toString()),
+          ),
+          destinationLocation: Location(
+            placeName: fetchBus['destinationName'],
+            latitude: double.parse(fetchBus['destinationLatitude'].toString()),
+            longitude: double.parse(fetchBus['destinationLongitude'].toString()),
+          ),
+        );
+        _busList.add(bus);
+        print(bus.name);
+      });
+      _isLoading = false;
+      notifyListeners();
+      //print(fetchBusList);
   }
 
   void insertDataIntoLocalDB() {
-    for (Bus bus in tempList) {
+    for (Bus bus in _busList) {
       DBhelpers.insertBus(tableName: 'bus_list', busData: {
         "id": bus.id,
         "name": bus.name,
@@ -190,13 +227,12 @@ class BusListProvider extends ChangeNotifier {
   void retriveDataFromLocalDB() async {
     List<Map<String, dynamic>> list =
         await DBhelpers.getData(tableName: 'bus_list');
-
     _busList = list.map((bus) {
       return Bus(
         id: bus['id'],
         name: bus['name'],
         type: bus['type'],
-        stopageList: Helper.stringToList(bus['stopageList']),
+        stopageList: Helper.stringToListForLocalDB(bus['stopageList']),
         sourceName: bus['sourceName'],
         destinationName: bus['destinationName'],
         sourceLocation: Location(
