@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-//import 'input_page.dart';
 import 'input_page.dart';
 import 'bus_list.dart';
+import '../widget/home_page_drawer.dart';
 
 const kButtomTextStyle = TextStyle(fontWeight: FontWeight.bold);
 
@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
         title: Text('Local Bus Dhaka route'),
         centerTitle: true,
       ),
-      drawer: Drawer(),
+      drawer: HomePageDrawer(),
       backgroundColor: Colors.indigo, //  Color(0xff3f51b5)
       bottomNavigationBar: BottomNavigationBar(
         iconSize: 22.0,
