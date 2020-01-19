@@ -25,25 +25,53 @@ class _SourceDestinationTextFieldState
   final double textFieldSizedBoxHeight = 10.0;
 
   List<String> suggestions = [
-    'Gabtoli',
-    'Technical',
-    'Kallyanpur',
-    'Shamoli',
-    'CollageGate',
-    'Farmget',
-    'Sadarghat',
-    'Jatrabari',
-    'Dhamrai',
+    'Naya Bazar',
+    'Ray Shaheb Bazar',
+    'Daynik Bangla Mor',
     'Savar',
-    'Mirpur 1',
+    'GPO',
+    'Shahbag',
+    'Motijheel',
+    'Kallyanpur',
+    'Paltan',
+    'Collage Gate',
+    'College Gate',
+    'Nandan Park',
+    'Aminbazar',
+    'Bangla Motor',
+    'Shyamoli',
+    'Hemayetpur',
+    'High Court',
+    'Jatra Bari',
+    'Jatrabari',
+    'Nobinagar',
+    'Gabtoli',
+    'Sign Board',
+    'Kanchpur',
+    'Chittagong Road',
+    'Science Lab',
+    'Jonopath Mor',
+    'Press Club',
+    'Kamalapur',
+    'Farmgate',
+    'Shishu Mela',
     'Dhanmondi 27',
-    'Dhanmoni 32',
+    'Gulistan',
+    'Shonir Akhra',
+    'Kawran Bazar',
+    'Dhanmondi 32',
+    'Kalabagan',
+    'Sayedabad',
+    'Baipayl',
     'Shabag',
-    'Mohammadpur',
-    'Agergou',
-    'Mirpur 10',
-    'Uttara',
-    'Abdullahpur'
+    'Khamarbari',
+    'Technical',
+    'Madanpur',
+    'Katabon',
+    'Golap Shah Mazar',
+    'Shymoli',
+    'Asad Gate',
+    'Zirani Bazar',
   ];
 
   Widget sourceTextField() {
@@ -105,7 +133,7 @@ class _SourceDestinationTextFieldState
   void _onSubmittedForm() {
     if (textEditingControllerSource.text != "" &&
         textEditingControllerDestination.text != "") {
-      Provider.of<BusListProvider>(context,listen: false).onTap(
+      Provider.of<BusListProvider>(context, listen: false).onTap(
           source: textEditingControllerSource.text,
           destination: textEditingControllerDestination.text);
       print('TextField is not empty');
