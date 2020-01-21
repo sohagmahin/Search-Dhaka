@@ -15,7 +15,7 @@ class BusListProvider extends ChangeNotifier {
   bool _isLoading = false;
   bool _isOpenFirstTime = false;
   bool _isReloaded = true;
-  bool _result = true;
+  bool _hasInternet = true;
   List<Bus> _busList = [];
 
   List<Bus> dummyData = [
@@ -110,7 +110,7 @@ class BusListProvider extends ChangeNotifier {
   List<Bus> _selectedBusList = [];
 
   bool get result{
-    return _result;
+    return _hasInternet;
   }
   bool get isLoading {
     return _isLoading;
@@ -163,7 +163,7 @@ class BusListProvider extends ChangeNotifier {
 
     if (pref.getBool('OpenFlag') != null) {
       _isOpenFirstTime = pref.getBool('OpenFlag');
-      _result = true;
+      _hasInternet = true;
       notifyListeners();
       if (_isReloaded) {
         //It used for avoiding recall the retriveDataFromLocalDB function
@@ -172,34 +172,35 @@ class BusListProvider extends ChangeNotifier {
         _isReloaded = false;
       }
     } else {
-        _result = await DataConnectionChecker().hasConnection;
-      if(_result == true) {
+        _hasInternet = await DataConnectionChecker().hasConnection;
+      if(_hasInternet == true) {
         pref.setBool('OpenFlag', true);
-        await fetchDataFromFirebase();
+        await fetchDataFromFirebase(pref);
         insertDataIntoLocalDB();
         _isOpenFirstTime = true;
         _isReloaded = false;
         notifyListeners();
-        print('YAY! Free cute dog pics!');
-      } else {
-        print('No internet :( Reason:');
-        print(DataConnectionChecker().lastTryResults);
       }
       notifyListeners();
     }
   }
 
-  Future fetchDataFromFirebase() async {
+  Future fetchDataFromFirebase(SharedPreferences pre) async {
     //fetch data from firebase then insert into list;
     _isLoading = true;
     notifyListeners();
     String url = 'https://local-bus-8c5eb.firebaseio.com/buslist.json';
-    http.Response response = await http.get(url);
+    http.Response response = await http.get(url).catchError((onError){
+      pre.remove('OpenFlag');
+      _isLoading = false;
+      _hasInternet = false;
+      notifyListeners();
+      return;
+    });
     Map<String, dynamic> fetchBusList = json.decode(response.body);
     if (fetchBusList == null) {
       _isLoading = false;
       notifyListeners();
-      return;
     }
     fetchBusList.forEach((String key, dynamic fetchBus) {
       final Bus bus = Bus(
