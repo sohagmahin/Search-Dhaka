@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'bus_tile.dart';
 import 'package:provider/provider.dart';
 import '../provider/bus_list_provider.dart';
@@ -22,7 +23,7 @@ class BusList extends StatelessWidget {
         ),
         builder: (context, busListData, ch) {
           return !busListData.result
-              ? Center(child: Text('Turn On your internet Connection\n For\n First Time!',textAlign: TextAlign.center,),)
+              ? Center(child: Text('NEED AN INTERNET CONNECTION\nFOR FIRST TIME!',textAlign: TextAlign.center,style: GoogleFonts.robotoCondensed(fontWeight: FontWeight.bold,fontSize: 20,color: Colors.indigoAccent),),)
               : busListData.isLoading
                   ? Center(
                       child: CircularProgressIndicator(),
