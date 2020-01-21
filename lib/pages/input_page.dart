@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import '../widget/source_destination_textField.dart';
 import '../widget/bus_list.dart';
@@ -21,6 +23,14 @@ class _InputPageState extends State<InputPage> {
     );
   }
 
+//  @override
+//  void didChangeDependencies() async {
+//    // TODO: implement didChangeDependencies
+//    super.didChangeDependencies();
+//    await Provider.of<BusListProvider>(context, listen: false).loadData();
+//  }
+//  }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -40,6 +50,7 @@ class _InputPageState extends State<InputPage> {
         left: originalWidth * 0.02,
         top: originalHeight * 0.025,
         right: originalWidth * 0.10);
+    
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -72,10 +83,11 @@ class _InputPageState extends State<InputPage> {
                   bottomRight: Radius.circular(20.0)),
               shape: BoxShape.rectangle,
             ),
-            child: BusList(
+            child:
+            BusList(
               screenHeight: originalHeight,
               screenWidth: originalWidth,
-            ),
+            )
           ),
         ),
       ],

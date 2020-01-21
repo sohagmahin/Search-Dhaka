@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:local_bus_dhaka_route/models/location.dart';
 import '../models/bus.dart';
@@ -6,11 +8,14 @@ import '../helpers/helper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:data_connection_checker/data_connection_checker.dart';
+import 'package:flutter/material.dart';
 
 class BusListProvider extends ChangeNotifier {
   bool _isLoading = false;
   bool _isOpenFirstTime = false;
   bool _isReloaded = true;
+  bool _result = true;
   List<Bus> _busList = [];
 
   List<Bus> dummyData = [
@@ -102,11 +107,15 @@ class BusListProvider extends ChangeNotifier {
     ),
   ];
 
-  bool get isLoading{
+  List<Bus> _selectedBusList = [];
+
+  bool get result{
+    return _result;
+  }
+  bool get isLoading {
     return _isLoading;
   }
 
-  List<Bus> _selectedBusList = [];
 
   int get selectedBusCount {
     return _selectedBusList.length;
@@ -143,7 +152,6 @@ class BusListProvider extends ChangeNotifier {
 
   //Data Fetching & Store related method
 
-
   void loadData() async {
     /*this method basically checking this app is open firstime.
   If open first time then loaded the all data from online & store on the Local database
@@ -155,7 +163,8 @@ class BusListProvider extends ChangeNotifier {
 
     if (pref.getBool('OpenFlag') != null) {
       _isOpenFirstTime = pref.getBool('OpenFlag');
-
+      _result = true;
+      notifyListeners();
       if (_isReloaded) {
         //It used for avoiding recall the retriveDataFromLocalDB function
         retriveDataFromLocalDB();
@@ -163,52 +172,60 @@ class BusListProvider extends ChangeNotifier {
         _isReloaded = false;
       }
     } else {
-      pref.setBool('OpenFlag', true);
-      await fetchDataFromFirebase();
-      insertDataIntoLocalDB();
-      _isOpenFirstTime = true;
-      _isReloaded= false;
+        _result = await DataConnectionChecker().hasConnection;
+      if(_result == true) {
+        pref.setBool('OpenFlag', true);
+        await fetchDataFromFirebase();
+        insertDataIntoLocalDB();
+        _isOpenFirstTime = true;
+        _isReloaded = false;
+        notifyListeners();
+        print('YAY! Free cute dog pics!');
+      } else {
+        print('No internet :( Reason:');
+        print(DataConnectionChecker().lastTryResults);
+      }
       notifyListeners();
     }
   }
 
   Future fetchDataFromFirebase() async {
     //fetch data from firebase then insert into list;
-      _isLoading = true;
-      notifyListeners();
-      String url = 'https://local-bus-8c5eb.firebaseio.com/buslist.json';
-      http.Response response = await http.get(url);
-      Map<String, dynamic> fetchBusList = json.decode(response.body);
-      if (fetchBusList == null) {
-        _isLoading = false;
-        notifyListeners();
-        return;
-      }
-      fetchBusList.forEach((String key, dynamic fetchBus) {
-        final Bus bus = Bus(
-          id: key,
-          name: fetchBus['name'].toString(),
-          type: fetchBus['type'].toString(),
-          sourceName: fetchBus['sourceName'].toString(),
-          destinationName: fetchBus['destinationName'].toString(),
-          stopageList: Helper.stringToList(fetchBus['stopageList'].toString()),
-          sourceLocation: Location(
-            placeName: fetchBus['sourceName'],
-            latitude: double.parse(fetchBus['sourceLatitude'].toString()),
-            longitude: double.parse(fetchBus['sourceLongitude'].toString()),
-          ),
-          destinationLocation: Location(
-            placeName: fetchBus['destinationName'],
-            latitude: double.parse(fetchBus['destinationLatitude'].toString()),
-            longitude: double.parse(fetchBus['destinationLongitude'].toString()),
-          ),
-        );
-        _busList.add(bus);
-        print(bus.name);
-      });
+    _isLoading = true;
+    notifyListeners();
+    String url = 'https://local-bus-8c5eb.firebaseio.com/buslist.json';
+    http.Response response = await http.get(url);
+    Map<String, dynamic> fetchBusList = json.decode(response.body);
+    if (fetchBusList == null) {
       _isLoading = false;
       notifyListeners();
-      //print(fetchBusList);
+      return;
+    }
+    fetchBusList.forEach((String key, dynamic fetchBus) {
+      final Bus bus = Bus(
+        id: key,
+        name: fetchBus['name'].toString(),
+        type: fetchBus['type'].toString(),
+        sourceName: fetchBus['sourceName'].toString(),
+        destinationName: fetchBus['destinationName'].toString(),
+        stopageList: Helper.stringToList(fetchBus['stopageList'].toString()),
+        sourceLocation: Location(
+          placeName: fetchBus['sourceName'],
+          latitude: double.parse(fetchBus['sourceLatitude'].toString()),
+          longitude: double.parse(fetchBus['sourceLongitude'].toString()),
+        ),
+        destinationLocation: Location(
+          placeName: fetchBus['destinationName'],
+          latitude: double.parse(fetchBus['destinationLatitude'].toString()),
+          longitude: double.parse(fetchBus['destinationLongitude'].toString()),
+        ),
+      );
+      _busList.add(bus);
+      print(bus.name);
+    });
+    _isLoading = false;
+    notifyListeners();
+    //print(fetchBusList);
   }
 
   void insertDataIntoLocalDB() {

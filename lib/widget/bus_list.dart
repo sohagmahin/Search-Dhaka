@@ -21,37 +21,39 @@ class BusList extends StatelessWidget {
           child: Text('No Bus Available!'),
         ),
         builder: (context, busListData, ch) {
-          return busListData.isLoading
-              ? Center(
-                  child: CircularProgressIndicator(),
-                )
-              : busListData.selectedBusCount == 0
-                  ? ch
-                  : ListView.builder(
-                      itemCount: busListData.selectedBusCount,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: busTileCardPadding,
-                          child: Container(
-                            height: 60.0,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              shape: BoxShape.rectangle,
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            child: BusTile(
-                              name: busListData.selectedBusList[index].name,
-                              type: busListData.selectedBusList[index].type,
-                              source:
-                                  busListData.selectedBusList[index].sourceName,
-                              destination: busListData
-                                  .selectedBusList[index].destinationName,
-                              stopageList: busListData
-                                  .selectedBusList[index].stopageList,
-                            ),
-                          ),
-                        );
-                      });
+          return !busListData.result
+              ? Center(child: Text('Turn On your internet Connection\n For\n First Time!',textAlign: TextAlign.center,),)
+              : busListData.isLoading
+                  ? Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : busListData.selectedBusCount == 0
+                      ? ch
+                      : ListView.builder(
+                          itemCount: busListData.selectedBusCount,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: busTileCardPadding,
+                              child: Container(
+                                height: 60.0,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  shape: BoxShape.rectangle,
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
+                                child: BusTile(
+                                  name: busListData.selectedBusList[index].name,
+                                  type: busListData.selectedBusList[index].type,
+                                  source: busListData
+                                      .selectedBusList[index].sourceName,
+                                  destination: busListData
+                                      .selectedBusList[index].destinationName,
+                                  stopageList: busListData
+                                      .selectedBusList[index].stopageList,
+                                ),
+                              ),
+                            );
+                          });
         });
   }
 }
