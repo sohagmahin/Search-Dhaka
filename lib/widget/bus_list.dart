@@ -23,7 +23,17 @@ class BusList extends StatelessWidget {
         ),
         builder: (context, busListData, ch) {
           return !busListData.result
-              ? Center(child: Text('NEED AN INTERNET CONNECTION\nFOR FIRST TIME!',textAlign: TextAlign.center,style: GoogleFonts.robotoCondensed(fontWeight: FontWeight.bold,fontSize: 20,color: Colors.indigoAccent),),)
+              ? Center(
+                  child: Text(
+                    'NEED AN INTERNET CONNECTION\nFOR FIRST TIME!',
+                    style: TextStyle(
+                        fontFamily: 'ZCOOLQingKeHuangYou',
+                        fontWeight: FontWeight.w600,
+                        fontSize: 25.0,
+                        color: Colors.black54),
+                    textAlign: TextAlign.center,
+                  ),
+                )
               : busListData.isLoading
                   ? Center(
                       child: CircularProgressIndicator(),
