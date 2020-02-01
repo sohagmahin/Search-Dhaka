@@ -51,6 +51,7 @@ class BusList extends StatelessWidget {
                                   color: Colors.white,
                                   shape: BoxShape.rectangle,
                                   borderRadius: BorderRadius.circular(10.0),
+                                  boxShadow: [BoxShadow(color: Colors.black54,blurRadius: 1,spreadRadius: 2,offset: Offset.zero)]
                                 ),
                                 child: BusTile(
                                   name: busListData.selectedBusList[index].name,

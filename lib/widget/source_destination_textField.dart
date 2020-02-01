@@ -74,6 +74,11 @@ class _SourceDestinationTextFieldState
     'Zirani Bazar',
   ];
 
+  InputBorder _buildEnabledBorder() {
+    return OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.yellowAccent, width: 2));
+  }
+
   Widget sourceTextField() {
     return SimpleAutoCompleteTextField(
       key: sourceKey,
@@ -89,14 +94,12 @@ class _SourceDestinationTextFieldState
         }
       }),
       decoration: InputDecoration(
-          icon: Icon(
-            Icons.my_location,
-            size: 18,
-            color: Colors.white,
-          ),
-          labelText: 'Source',
-          filled: true,
-          fillColor: Colors.white),
+        enabledBorder: _buildEnabledBorder(),
+        prefixIcon: Icon(Icons.gps_fixed),
+        labelText: 'Source',
+        filled: true,
+        fillColor: Colors.white,
+      ),
       style:
           TextStyle(backgroundColor: Colors.white, fontWeight: FontWeight.bold),
     );
@@ -117,11 +120,9 @@ class _SourceDestinationTextFieldState
         }
       }),
       decoration: InputDecoration(
-          icon: Icon(
-            Icons.location_on,
-            size: 18,
-            color: Colors.white,
-          ),
+          enabledBorder: _buildEnabledBorder(),
+          prefixIcon: Icon(Icons.location_on),
+          // border: _buildBorder(),
           labelText: 'Destination',
           filled: true,
           fillColor: Colors.white),
