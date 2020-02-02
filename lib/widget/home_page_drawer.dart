@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../pages/conscious_info_page.dart';
 
 class HomePageDrawer extends StatelessWidget {
   @override
@@ -14,6 +15,20 @@ class HomePageDrawer extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
+              ListTile(
+                title: Text(
+                  'সচেতনতা',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                leading: Icon(Icons.library_books),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ConsciousInfoPage()));
+                },
+              ),
+              SizedBox(
+                height: 10,
+              ),
               _buildAboutListTile(context),
             ],
           ),
@@ -24,15 +39,15 @@ class HomePageDrawer extends StatelessWidget {
 
   ListTile _buildAboutListTile(BuildContext context) {
     return ListTile(
-              title: Text(
-                'About',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              leading: Icon(Icons.person_outline),
-              onTap: () {
-                _buildCupertinoAlertDialog(context);
-              },
-            );
+      title: Text(
+        'About',
+        style: TextStyle(fontWeight: FontWeight.bold),
+      ),
+      leading: Icon(Icons.person_outline),
+      onTap: () {
+        _buildAlertDialog(context);
+      },
+    );
   }
 
   Container _buildHeaderContainer(BuildContext context) {
@@ -78,15 +93,15 @@ class HomePageDrawer extends StatelessWidget {
     );
   }
 
-  _buildCupertinoAlertDialog(BuildContext context) {
+  _buildAlertDialog(BuildContext context) {
     return showDialog(
       context: context,
-      builder: (context) => CupertinoAlertDialog(
+      builder: (context) => AlertDialog(
         title: Text('About'),
         content:
-            Text('\nBuild by Flutter\nCreated by SOHAG\nCredit: hasan,Soyab'),
+            Text('Build by Flutter!\nCreated by SOHAG\nCredit: Hasan, Soyab'),
         actions: <Widget>[
-          CupertinoButton(
+          FlatButton(
             child: Text('OK'),
             onPressed: () {
               Navigator.of(context).pop();

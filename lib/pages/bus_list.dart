@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../constant.dart';
+import '../util/constant.dart';
 import '../widget/bus_tile.dart';
 import 'package:provider/provider.dart';
 import '../provider/bus_list_provider.dart';

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mapbox_navigation/flutter_mapbox_navigation.dart';
 import 'dart:async';
 import 'package:flutter/services.dart';
-import '../constant.dart';
+import '../util/constant.dart';
 class BusDetails extends StatefulWidget {
   final String busName;
   final String sourceName;
