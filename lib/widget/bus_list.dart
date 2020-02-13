@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'bus_tile.dart';
 import 'package:provider/provider.dart';
 import '../provider/bus_list_provider.dart';
@@ -54,14 +53,8 @@ class BusList extends StatelessWidget {
                                   boxShadow: [BoxShadow(color: Colors.black54,blurRadius: 1,spreadRadius: 2,offset: Offset.zero)]
                                 ),
                                 child: BusTile(
-                                  name: busListData.selectedBusList[index].name,
-                                  type: busListData.selectedBusList[index].type,
-                                  source: busListData
-                                      .selectedBusList[index].sourceName,
-                                  destination: busListData
-                                      .selectedBusList[index].destinationName,
-                                  stopageList: busListData
-                                      .selectedBusList[index].stopageList,
+                                  selectedBus: true,
+                                  index: index,
                                 ),
                               ),
                             );

@@ -1,21 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../util/constant.dart';
-class BusDetails extends StatefulWidget {
+import '../models/location.dart';
+
+class BusDetails extends StatelessWidget {
   final String busName;
   final String sourceName;
   final String destinationName;
+  final Location sourceLocation;
+  final Location destinationLocation;
   final List stopageList;
-  BusDetails(
-      {this.busName, this.sourceName, this.destinationName, this.stopageList});
+  BusDetails({
+    this.busName,
+    this.sourceName,
+    this.destinationName,
+    this.sourceLocation,
+    this.destinationLocation,
+    this.stopageList,
+  });
 
-  @override
-  _BusDetailsState createState() => _BusDetailsState();
-}
-
-class _BusDetailsState extends State<BusDetails> {
   final double busProfileContainerHeight = 100;
   final double busProfileContainerWidth = 100;
-
 
   Widget _buildBusIntro() {
     return Column(
@@ -35,11 +40,11 @@ class _BusDetailsState extends State<BusDetails> {
           ),
         ),
         Text(
-          widget.busName,
+          busName,
           style: TextStyle(fontSize: 30),
         ),
         Text(
-          '${widget.sourceName} - ${widget.destinationName}',
+          '$sourceName - $destinationName',
           style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
         )
       ],
@@ -69,16 +74,30 @@ class _BusDetailsState extends State<BusDetails> {
             stopageName,
             style: TextStyle(fontSize: 18),
           ),
-          Icon(index != (widget.stopageList.length - 1)
-              ? Icons.arrow_downward
-              : null),
+          Icon(index != (stopageList.length - 1) ? Icons.arrow_downward : null),
         ],
       ),
     );
   }
 
+  _launchURL(String url, BuildContext context) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+                title: Text('Pleace install Google Maps'),
+                content: Text('Install Google Maps Or Chrome Brower!'),
+              ));
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    String url =
+        'http://maps.google.com/maps?saddr=${sourceLocation.latitude},${sourceLocation.longitude}&daddr=${destinationLocation.latitude},${destinationLocation.longitude}';
     return Scaffold(
       appBar: AppBar(
         title: Text('Bus details'),
@@ -100,12 +119,11 @@ class _BusDetailsState extends State<BusDetails> {
             Expanded(
               child: _buildCard(
                 busChild: ListView.builder(
-                    itemCount: widget.stopageList.length,
+                    itemCount: stopageList.length,
                     itemBuilder: (context, index) {
                       return Center(
                           child: _buildBusStopagesName(
-                              stopageName: widget.stopageList[index],
-                              index: index));
+                              stopageName: stopageList[index], index: index));
                     }),
               ),
             ),
@@ -115,7 +133,7 @@ class _BusDetailsState extends State<BusDetails> {
                   color: Colors.lightGreen,
                   child: Text('View On Map'),
                   onPressed: () {
-
+                    _launchURL(url, context);
                   }),
             )
           ],

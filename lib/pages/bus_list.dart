@@ -3,7 +3,6 @@ import '../util/constant.dart';
 import '../widget/bus_tile.dart';
 import 'package:provider/provider.dart';
 import '../provider/bus_list_provider.dart';
-import '../models/bus.dart';
 
 class BusList extends StatelessWidget {
   @override
@@ -25,11 +24,8 @@ class BusList extends StatelessWidget {
                     itemCount: busListData.allBusCount,
                     itemBuilder: (context, index) {
                       return BusTile(
-                        name: busListData.busList[index].name,
-                        type: busListData.busList[index].type,
-                        source: busListData.busList[index].sourceName,
-                        destination: busListData.busList[index].destinationName,
-                        stopageList: busListData.busList[index].stopageList,
+                        allbus: true,
+                        index: index,
                       );
                     });
           }),
