@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mapbox_navigation/flutter_mapbox_navigation.dart';
-import 'dart:async';
-import 'package:flutter/services.dart';
 import '../util/constant.dart';
 class BusDetails extends StatefulWidget {
   final String busName;
@@ -19,72 +16,6 @@ class _BusDetailsState extends State<BusDetails> {
   final double busProfileContainerHeight = 100;
   final double busProfileContainerWidth = 100;
 
-  //start Map functionality
-  String _platformVersion = 'Unknown';
-//  final _origin = Location(
-//      name:
-//          "Hall Market, Ring Road, Mohammadpur, Dhaka District, Dhaka Division, 1207, Bangladesh",
-//      latitude: 23.77471,
-//      longitude: 90.36542);
-  final _origin = Location(
-      name:
-      "N5, Savar Union",
-      latitude: 23.845623,
-      longitude: 90.256679);
-  final _destination = Location(
-    name:
-        "Farmgate Bus Stop, Kazi Nazrul Islam Avenue, Pashcim Nakhalpara, Lalmatia, Dhaka, Dhaka District, Dhaka Division, 1215, Bangladesh",
-    latitude: 23.75724,
-    longitude: 90.39022,
-  );
-
-  MapboxNavigation _directions;
-  bool _arrived = false;
-  double _distanceRemaining, _durationRemaining;
-
-  Future<void> initPlatformState() async {
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    _directions = MapboxNavigation(onRouteProgress: (arrived) async {
-      _distanceRemaining = await _directions.distanceRemaining;
-      _durationRemaining = await _directions.durationRemaining;
-
-      setState(() {
-        _arrived = arrived;
-      });
-      if (arrived) await _directions.finishNavigation();
-    });
-
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    try {
-      platformVersion = await _directions.platformVersion;
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
-
-    setState(() {
-      _platformVersion = platformVersion;
-    });
-  }
-
-
-  void startNavigating() async {
-    await _directions.startNavigation(
-        origin: _origin,
-        destination: _destination,
-        mode: NavigationMode.driving,
-        simulateRoute: false);
-  }
-  @override
-  void initState() {
-    super.initState();
-    initPlatformState();
-  }
-  //end Map functionality
 
   Widget _buildBusIntro() {
     return Column(
@@ -184,7 +115,7 @@ class _BusDetailsState extends State<BusDetails> {
                   color: Colors.lightGreen,
                   child: Text('View On Map'),
                   onPressed: () {
-                    startNavigating();
+
                   }),
             )
           ],
