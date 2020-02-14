@@ -5,6 +5,9 @@ import 'all_bus_list.dart';
 import '../widget/home_page_drawer.dart';
 
 const kButtomTextStyle = TextStyle(fontWeight: FontWeight.bold);
+enum FilterStatus {
+  findNearestStop,
+}
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -24,6 +27,28 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           title: Text('Local Bus Dhaka route'),
           centerTitle: true,
+          actions: <Widget>[
+            PopupMenuButton(
+              icon: Icon(Icons.more_vert),
+              onSelected: (status) {
+                if (status == FilterStatus.findNearestStop) {
+                  showDialog(
+                      context: context,
+                      builder: (ctx) => AlertDialog(
+                            content: Text('This feature will coming soon!'),
+                          ));
+                }
+              },
+              itemBuilder: (_) {
+                return [
+                  PopupMenuItem(
+                    child: Text('Find Nearest Stop'),
+                    value: FilterStatus.findNearestStop,
+                  ),
+                ];
+              },
+            )
+          ],
         ),
         drawer: HomePageDrawer(),
         backgroundColor: Colors.indigo, //  Color(0xff3f51b5)
