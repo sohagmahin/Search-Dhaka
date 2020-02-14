@@ -11,7 +11,12 @@ class HomePageDrawer extends StatelessWidget {
           color: Colors.white,
           child: Column(
             children: <Widget>[
-              _buildHeaderContainer(context),
+              AppBar(
+                title: Text('Local Bus Sheba'),
+                automaticallyImplyLeading: false,
+                centerTitle: true,
+              ),
+              //_buildHeaderContainer(context),
               SizedBox(
                 height: 10,
               ),
@@ -22,8 +27,10 @@ class HomePageDrawer extends StatelessWidget {
                 ),
                 leading: Icon(Icons.library_books),
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => ConsciousInfoPage()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ConsciousInfoPage()));
                 },
               ),
               SizedBox(

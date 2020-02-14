@@ -4,7 +4,7 @@ import '../widget/bus_tile.dart';
 import 'package:provider/provider.dart';
 import '../provider/bus_list_provider.dart';
 
-class BusList extends StatelessWidget {
+class AllBusList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(

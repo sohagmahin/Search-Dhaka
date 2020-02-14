@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:autocomplete_textfield/autocomplete_textfield.dart';
 import 'package:provider/provider.dart';
 import '../provider/bus_list_provider.dart';
+import '../util/constant.dart';
 
 class SourceDestinationTextField extends StatefulWidget {
   @override
@@ -24,66 +25,17 @@ class _SourceDestinationTextFieldState
   final double textFieldContainerHeight = 50.0;
   final double textFieldSizedBoxHeight = 10.0;
 
-  List<String> suggestions = [
-    'Naya Bazar',
-    'Ray Shaheb Bazar',
-    'Daynik Bangla Mor',
-    'Savar',
-    'GPO',
-    'Shahbag',
-    'Motijheel',
-    'Kallyanpur',
-    'Paltan',
-    'Collage Gate',
-    'College Gate',
-    'Nandan Park',
-    'Aminbazar',
-    'Bangla Motor',
-    'Shyamoli',
-    'Hemayetpur',
-    'High Court',
-    'Jatra Bari',
-    'Jatrabari',
-    'Nobinagar',
-    'Gabtoli',
-    'Sign Board',
-    'Kanchpur',
-    'Chittagong Road',
-    'Science Lab',
-    'Jonopath Mor',
-    'Press Club',
-    'Kamalapur',
-    'Farmgate',
-    'Shishu Mela',
-    'Dhanmondi 27',
-    'Gulistan',
-    'Shonir Akhra',
-    'Kawran Bazar',
-    'Dhanmondi 32',
-    'Kalabagan',
-    'Sayedabad',
-    'Baipayl',
-    'Shabag',
-    'Khamarbari',
-    'Technical',
-    'Madanpur',
-    'Katabon',
-    'Golap Shah Mazar',
-    'Shymoli',
-    'Asad Gate',
-    'Zirani Bazar',
-  ];
-
   InputBorder _buildEnabledBorder() {
     return OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.yellowAccent, width: 2));
+      borderSide: BorderSide(color: Colors.black87, width: 2),
+    );
   }
 
   Widget sourceTextField() {
     return SimpleAutoCompleteTextField(
       key: sourceKey,
       controller: textEditingControllerSource,
-      suggestions: suggestions,
+      suggestions: KConstant.suggestions,
       textChanged: (text) => currentText = text,
       clearOnSubmit: false,
       textSubmitted: (text) => setState(() {
@@ -109,7 +61,7 @@ class _SourceDestinationTextFieldState
     return SimpleAutoCompleteTextField(
       key: destinationKey,
       controller: textEditingControllerDestination,
-      suggestions: suggestions,
+      suggestions: KConstant.suggestions,
       textChanged: (text) => currentText = text,
       clearOnSubmit: false,
       textSubmitted: (text) => setState(() {

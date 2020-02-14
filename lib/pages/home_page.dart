@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'input_page.dart';
-import 'bus_list.dart';
+import 'all_bus_list.dart';
 import '../widget/home_page_drawer.dart';
 
 const kButtomTextStyle = TextStyle(fontWeight: FontWeight.bold);
@@ -67,7 +67,7 @@ class _HomePageState extends State<HomePage> {
             });
           },
         ),
-        body: selected == 0 ? InputPage() : BusList(),
+        body: selected == 0 ? InputPage() : AllBusList(),
       ),
     );
   }
