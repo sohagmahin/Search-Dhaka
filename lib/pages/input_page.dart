@@ -72,7 +72,7 @@ class _InputPageState extends State<InputPage> {
                   shape: BoxShape.rectangle,
                   boxShadow: [
                     BoxShadow(
-                        color: Colors.lightBlueAccent,
+                        color: Colors.black54,
                         blurRadius: 1,
                         spreadRadius: 2.5)
                   ]),
