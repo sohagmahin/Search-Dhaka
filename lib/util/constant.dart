@@ -149,7 +149,6 @@ class KConstant {
     'Kalabagan',
     'Sayedabad',
     'Baipayl',
-    'Shabag',
     'Khamarbari',
     'Technical',
     'Madanpur',

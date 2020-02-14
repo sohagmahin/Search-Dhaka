@@ -24,7 +24,14 @@ class BusTile extends StatelessWidget {
 
     return ListTile(
       title: Text(bus.name),
-      leading: Icon(Icons.directions_bus),
+      leading: Image(
+        image: AssetImage('assets/images/busIcon.png'),
+        fit: BoxFit.cover,
+        alignment: Alignment.center,
+        height: 40,
+        width: 40,
+
+      ),
       trailing: Text(bus.type),
       subtitle: Text(bus.sourceName + ' - ' + bus.destinationName),
       onTap: () {
@@ -34,8 +41,8 @@ class BusTile extends StatelessWidget {
                   sourceName: bus.sourceName,
                   destinationName: bus.destinationName,
                   stopageList: bus.stopageList,
-              sourceLocation: bus.sourceLocation,
-              destinationLocation: bus.destinationLocation,
+                  sourceLocation: bus.sourceLocation,
+                  destinationLocation: bus.destinationLocation,
                 )));
       },
     );

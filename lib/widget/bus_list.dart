@@ -18,7 +18,7 @@ class BusList extends StatelessWidget {
 
     return Consumer<BusListProvider>(
         child: Center(
-          child: Text('No Bus Available!'),
+          child: Text('No bus available!',style: TextStyle(fontSize: 15),)
         ),
         builder: (context, busListData, ch) {
           return !busListData.result
@@ -45,13 +45,19 @@ class BusList extends StatelessWidget {
                             return Padding(
                               padding: busTileCardPadding,
                               child: Container(
-                                height: 60.0,
+                                height: 70.0,
+                                alignment: Alignment.center,
                                 decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  shape: BoxShape.rectangle,
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  boxShadow: [BoxShadow(color: Colors.black54,blurRadius: 1,spreadRadius: 2,offset: Offset.zero)]
-                                ),
+                                    color: Colors.white,
+                                    shape: BoxShape.rectangle,
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.black54,
+                                          blurRadius: 1,
+                                          spreadRadius: 2,
+                                          offset: Offset.zero)
+                                    ]),
                                 child: BusTile(
                                   selectedBus: true,
                                   index: index,
