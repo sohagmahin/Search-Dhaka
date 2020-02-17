@@ -273,4 +273,8 @@ class BusListProvider extends ChangeNotifier {
     _isLoading = false;
     notifyListeners();
   }
+
+  Bus findById(String id) {
+    return busList.firstWhere((bus) => bus.id == id);
+  }
 }
