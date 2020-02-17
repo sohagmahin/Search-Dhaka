@@ -1,28 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../util/constant.dart';
-import '../models/location.dart';
+import 'package:provider/provider.dart';
+import '../provider/bus_list_provider.dart';
+import '../widget/Rounded_Card.dart';
 
 class BusDetails extends StatelessWidget {
-  final String busName;
-  final String sourceName;
-  final String destinationName;
-  final Location sourceLocation;
-  final Location destinationLocation;
-  final List stopageList;
-  BusDetails({
-    this.busName,
-    this.sourceName,
-    this.destinationName,
-    this.sourceLocation,
-    this.destinationLocation,
-    this.stopageList,
-  });
+  static const routeName = '/busDtails';
 
   final double busProfileContainerHeight = 100;
   final double busProfileContainerWidth = 100;
 
-  Widget _buildBusIntro() {
+  Widget _buildBusIntro(
+      {String busName, String sourceName, String destinationName}) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -51,27 +41,12 @@ class BusDetails extends StatelessWidget {
     );
   }
 
-  Widget _buildCard({Widget busChild, double cardHeight}) {
-    return Container(
-      margin: const EdgeInsets.only(top: 10.0, left: 15.0, right: 15.0),
-      child: busChild,
-      height: cardHeight,
-      decoration: BoxDecoration(
-        border:
-            Border.all(color: Colors.yellowAccent, width: 3), // or Colors.grey
-        shape: BoxShape.rectangle,
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      alignment: Alignment.center,
-    );
-  }
-
-  Widget _buildBusStopagesName({String stopageName, int index}) {
+  Widget _buildBusStopagesName({List stopageList, int index}) {
     return Container(
       child: Column(
         children: <Widget>[
           Text(
-            stopageName,
+            stopageList[index],
             style: TextStyle(fontSize: 18),
           ),
           Icon(index != (stopageList.length - 1) ? Icons.arrow_downward : null),
@@ -96,8 +71,11 @@ class BusDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String id = ModalRoute.of(context).settings.arguments as String;
+    var bus = Provider.of<BusListProvider>(context).findById(id);
+
     String url =
-        'http://maps.google.com/maps?saddr=${sourceLocation.latitude},${sourceLocation.longitude}&daddr=${destinationLocation.latitude},${destinationLocation.longitude}';
+        'http://maps.google.com/maps?saddr=${bus.sourceLocation.latitude},${bus.sourceLocation.longitude}&daddr=${bus.destinationLocation.latitude},${bus.destinationLocation.longitude}';
     return Scaffold(
       appBar: AppBar(
         title: Text('Bus details'),
@@ -114,17 +92,27 @@ class BusDetails extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             //Bus into card
-            _buildCard(busChild: _buildBusIntro(), cardHeight: 200.0),
+            RoundedCard(
+                busChild: _buildBusIntro(
+                    busName: bus.name,
+                    sourceName: bus.sourceName,
+                    destinationName: bus.destinationName),
+                cardHeight: 200.0),
             //Bus Stopage list
             Expanded(
-              child: _buildCard(
-                busChild: ListView.builder(
-                    itemCount: stopageList.length,
-                    itemBuilder: (context, index) {
-                      return Center(
-                          child: _buildBusStopagesName(
-                              stopageName: stopageList[index], index: index));
-                    }),
+              child: Container(
+                child: RoundedCard(
+                  busChild: Container(
+                    padding: const EdgeInsets.all(10.0),
+                    child: ListView.builder(
+                        itemCount: bus.stopageList.length,
+                        itemBuilder: (context, index) {
+                          return Center(
+                              child: _buildBusStopagesName(
+                                  stopageList: bus.stopageList, index: index));
+                        }),
+                  ),
+                ),
               ),
             ),
             Padding(

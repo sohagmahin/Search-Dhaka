@@ -27,10 +27,7 @@ class HomePageDrawer extends StatelessWidget {
                 ),
                 leading: Icon(Icons.library_books),
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ConsciousInfoPage()));
+                  Navigator.of(context).pushNamed(ConsciousInfoPage.routeName);
                 },
               ),
               SizedBox(

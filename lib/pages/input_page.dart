@@ -59,32 +59,30 @@ class _InputPageState extends State<InputPage> {
 
         //Build rectangle shape of box for displaying the bus list
         Expanded(
-          child: Container(
-              padding: EdgeInsets.only(top: originalHeight * 0.014),
-              margin: EdgeInsets.only(left: 15, right: 15),
-              decoration: BoxDecoration(
-                  color: Color(0xffe1e2e1),
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20.0),
-                      topRight: Radius.circular(20.0),
-                      bottomLeft: Radius.circular(20.0),
-                      bottomRight: Radius.circular(20.0)),
-                  shape: BoxShape.rectangle,
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.black54,
-                        blurRadius: 1,
-                        spreadRadius: 2.5)
-                  ]),
-              child: BusList(
-                screenHeight: originalHeight,
-                screenWidth: originalWidth,
-              )),
+          child: _buildBusOutputContainer(originalHeight, originalWidth),
         ),
         SizedBox(
           height: 05,
         )
       ],
     );
+  }
+
+  Container _buildBusOutputContainer(
+      double originalHeight, double originalWidth) {
+    return Container(
+        padding: EdgeInsets.only(top: originalHeight * 0.014),
+        margin: EdgeInsets.only(left: 15, right: 15),
+        decoration: BoxDecoration(
+            color: Color(0xffe1e2e1),
+            borderRadius: BorderRadius.circular(20.0),
+            shape: BoxShape.rectangle,
+            boxShadow: [
+              BoxShadow(color: Colors.black54, blurRadius: 1, spreadRadius: 2.5)
+            ]),
+        child: BusList(
+          screenHeight: originalHeight,
+          screenWidth: originalWidth,
+        ));
   }
 }

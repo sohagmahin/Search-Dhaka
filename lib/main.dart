@@ -3,12 +3,14 @@ import 'pages/home_page.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import './provider/bus_list_provider.dart';
+import 'package:local_bus_dhaka_route/pages/bus_details.dart';
+import './pages/conscious_info_page.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(LocalBus());
 }
 
-class MyApp extends StatelessWidget {
+class LocalBus extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,13 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.indigo,
         ),
-        home: HomePage(title: 'Local Bus(Dhaka route)'),
+        initialRoute: HomePage.routeName,
+        routes: {
+          HomePage.routeName: (context) =>
+              HomePage(title: 'Local Bus(Dhaka route)'),
+          BusDetails.routeName: (context) => BusDetails(),
+          ConsciousInfoPage.routeName: (context) => ConsciousInfoPage(),
+        },
       ),
     );
   }

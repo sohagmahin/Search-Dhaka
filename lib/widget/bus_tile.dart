@@ -25,7 +25,7 @@ class BusTile extends StatelessWidget {
     return ListTile(
       title: Text(bus.name),
       leading: Image(
-        image: AssetImage('assets/images/busIcon.png'),
+        image: AssetImage('assets/images/bus_image2.png'),
         fit: BoxFit.cover,
         alignment: Alignment.center,
         height: 40,
@@ -35,15 +35,7 @@ class BusTile extends StatelessWidget {
       trailing: Text(bus.type),
       subtitle: Text(bus.sourceName + ' - ' + bus.destinationName),
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => BusDetails(
-                  busName: bus.name,
-                  sourceName: bus.sourceName,
-                  destinationName: bus.destinationName,
-                  stopageList: bus.stopageList,
-                  sourceLocation: bus.sourceLocation,
-                  destinationLocation: bus.destinationLocation,
-                )));
+        Navigator.of(context).pushNamed(BusDetails.routeName,arguments: bus.id);
       },
     );
   }

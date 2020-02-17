@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class CustomCard extends StatelessWidget {
+class ConsciousInfoCard extends StatelessWidget {
 
   final String title;
   final String content;
   final Color color;
 
-  CustomCard({this.title, this.content, this.color});
+  ConsciousInfoCard({this.title, this.content, this.color});
 
   @override
   Widget build(BuildContext context) {
