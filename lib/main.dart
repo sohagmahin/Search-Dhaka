@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import './provider/bus_list_provider.dart';
 import 'package:local_bus_dhaka_route/pages/bus_details.dart';
 import './pages/conscious_info_page.dart';
+import './pages/tourist_place.dart';
 
 void main() {
   runApp(LocalBus());
@@ -30,6 +31,7 @@ class LocalBus extends StatelessWidget {
               HomePage(title: 'Local Bus(Dhaka route)'),
           BusDetails.routeName: (context) => BusDetails(),
           ConsciousInfoPage.routeName: (context) => ConsciousInfoPage(),
+          TouristPage.routeName: (context) => TouristPage(),
         },
       ),
     );
