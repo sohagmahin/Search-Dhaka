@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../pages/conscious_info_page.dart';
-import '../pages/tourist_place.dart';
+import '../pages/places.dart';
 
 class HomePageDrawer extends StatelessWidget {
   @override
@@ -39,9 +39,9 @@ class HomePageDrawer extends StatelessWidget {
                   'Tourist Place',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
-                leading: Icon(Icons.library_books),
+                leading: Icon(Icons.place),
                 onTap: () {
-                  Navigator.of(context).pushNamed(TouristPage.routeName);
+                  Navigator.of(context).pushNamed(Places.routeName);
                 },
               ),
               SizedBox(

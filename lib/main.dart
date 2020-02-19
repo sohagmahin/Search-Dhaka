@@ -5,7 +5,8 @@ import 'package:provider/provider.dart';
 import './provider/bus_list_provider.dart';
 import 'package:local_bus_dhaka_route/pages/bus_details.dart';
 import './pages/conscious_info_page.dart';
-import './pages/tourist_place.dart';
+import './pages/places.dart';
+import './pages/place_details.dart';
 
 void main() {
   runApp(LocalBus());
@@ -24,6 +25,7 @@ class LocalBus extends StatelessWidget {
         title: 'Local Bus',
         theme: ThemeData(
           primarySwatch: Colors.indigo,
+          fontFamily: 'ZCOOLQingKeHuangYou'
         ),
         initialRoute: HomePage.routeName,
         routes: {
@@ -31,7 +33,8 @@ class LocalBus extends StatelessWidget {
               HomePage(title: 'Local Bus(Dhaka route)'),
           BusDetails.routeName: (context) => BusDetails(),
           ConsciousInfoPage.routeName: (context) => ConsciousInfoPage(),
-          TouristPage.routeName: (context) => TouristPage(),
+          Places.routeName: (context) => Places(),
+          PlaceDetails.routeName: (context) => PlaceDetails(),
         },
       ),
     );

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widget/rounded_box.dart';
 
-class TouristPage extends StatelessWidget {
+class Places extends StatelessWidget {
   static const routeName = '/touristPage';
 
   List<SpotModel> placeList = [
@@ -16,7 +16,7 @@ class TouristPage extends StatelessWidget {
       shadowColor: Colors.deepOrange,
     ),
     SpotModel(
-      name: 'Ahsan Manzil Museum',
+      name: 'Ahsan Manzil',
       location: '18 kumartuli, Islampur Rd, Dhaka 1100',
       imageUrl:
           'https://lonelyplanetimages.imgix.net/a/g/hi/t/fc09d33522052723c107a6d1fe5741b0-ahsan-manzil.jpg',

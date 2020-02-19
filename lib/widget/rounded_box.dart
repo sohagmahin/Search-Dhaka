@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../pages/place_details.dart';
 
 class RoundedBox extends StatelessWidget {
   final String title;
@@ -22,8 +23,8 @@ class RoundedBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){
-
+      onTap: () {
+        Navigator.of(context).pushNamed(PlaceDetails.routeName);
       },
       child: Material(
 //      elevation: 3,
@@ -43,7 +44,7 @@ class RoundedBox extends StatelessWidget {
 //          ],
             borderRadius: BorderRadius.circular(30.0),
             gradient: LinearGradient(
-              colors: [startColor,endColor],
+              colors: [startColor, endColor],
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
               stops: [0.5, 1],
@@ -110,11 +111,11 @@ class RoundedBox extends StatelessWidget {
                 left: 120,
                 child: Row(
                   children: <Widget>[
-                    _buildCircularButton(Icons.location_on,iconColor),
+                    _buildCircularButton(Icons.location_on, iconColor),
                     SizedBox(
                       width: 20,
                     ),
-                    _buildCircularButton(Icons.navigation,iconColor),
+                    _buildCircularButton(Icons.navigation, iconColor),
                   ],
                 ),
               )
@@ -125,7 +126,7 @@ class RoundedBox extends StatelessWidget {
     );
   }
 
-  InkWell _buildCircularButton(IconData iconData,Color iconColor) {
+  InkWell _buildCircularButton(IconData iconData, Color iconColor) {
     return InkWell(
       onTap: () {
         print('Button Pressed!');
