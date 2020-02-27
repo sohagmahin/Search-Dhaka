@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'pages/home_page.dart';
+import 'pages/localbus/main.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import './provider/bus_list_provider.dart';
-import 'package:local_bus_dhaka_route/pages/bus_details.dart';
-import './pages/conscious_info_page.dart';
-import './pages/places.dart';
-import './pages/place_details.dart';
+import 'package:local_bus_dhaka_route/pages/localbus/bus_details.dart';
+import 'pages/localbus/conscious_info_page.dart';
+import 'pages/tourist/places.dart';
+import 'pages/tourist/place_details.dart';
+import 'pages/home_page.dart';
 
 void main() {
   runApp(LocalBus());
@@ -29,8 +30,9 @@ class LocalBus extends StatelessWidget {
         ),
         initialRoute: HomePage.routeName,
         routes: {
-          HomePage.routeName: (context) =>
-              HomePage(title: 'Local Bus(Dhaka route)'),
+          HomePage.routeName: (context)=>HomePage(),
+          MainPage.routeName: (context) =>
+              MainPage(title: 'Local Bus(Dhaka route)'),
           BusDetails.routeName: (context) => BusDetails(),
           ConsciousInfoPage.routeName: (context) => ConsciousInfoPage(),
           Places.routeName: (context) => Places(),

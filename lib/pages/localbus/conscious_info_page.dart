@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../util/constant.dart';
-import '../widget/conscious_info_card.dart';
+import '../../util/constant.dart';
+import '../../widget/conscious_info_card.dart';
 
 class ConsciousInfoPage extends StatelessWidget {
   static const routeName = '/consciousInfoPage';

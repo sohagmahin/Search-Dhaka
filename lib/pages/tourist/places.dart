@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../widget/rounded_box.dart';
+import '../../widget/rounded_box.dart';
 
 class Places extends StatelessWidget {
   static const routeName = '/touristPage';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../pages/place_details.dart';
+import '../pages/tourist/place_details.dart';
 
 class RoundedBox extends StatelessWidget {
   final String title;

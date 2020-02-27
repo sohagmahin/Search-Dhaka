@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../pages/conscious_info_page.dart';
-import '../pages/places.dart';
+import '../pages/localbus/conscious_info_page.dart';
+import '../pages/tourist/places.dart';
 
 class HomePageDrawer extends StatelessWidget {
   @override
