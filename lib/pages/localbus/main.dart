@@ -9,17 +9,17 @@ const kButtomTextStyle = TextStyle(fontWeight: FontWeight.bold);
 enum FilterStatus { findNearestStop }
 enum PageStatus { inputPage, allBusPage }
 
-class MainPage extends StatefulWidget {
+class LocalBusMain extends StatefulWidget {
   static const routeName = '/MainBusPage';
   final String title;
 
-  MainPage({this.title});
+  LocalBusMain({this.title});
 
   @override
-  _MainPageState createState() => _MainPageState();
+  _LocalBusMainState createState() => _LocalBusMainState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _LocalBusMainState extends State<LocalBusMain> {
   PageStatus selectedPage = PageStatus.inputPage;
 
   @override
