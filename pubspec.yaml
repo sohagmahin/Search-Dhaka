@@ -32,6 +32,7 @@ dependencies:
   google_fonts: ^0.3.2
   url_launcher: ^5.4.1
   carousel_slider: ^1.4.1
+  font_awesome_flutter: ^8.7.0
 
 dev_dependencies:
   flutter_test:

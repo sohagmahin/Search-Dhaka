@@ -8,6 +8,11 @@ import 'pages/localbus/conscious_info_page.dart';
 import 'pages/tourist/places.dart';
 import 'pages/tourist/place_details.dart';
 import 'pages/home_page.dart';
+import 'pages/university/universities.dart';
+import 'pages/hospital/hospitals.dart';
+import 'pages/shopping_mall/shopping_malls.dart';
+import 'pages/train/TrainStation.dart';
+import 'pages/hotline/hotline_numbers.dart';
 
 void main() {
   runApp(LocalBus());
@@ -25,18 +30,21 @@ class LocalBus extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Local Bus',
         theme: ThemeData(
-          primarySwatch: Colors.indigo,
-          fontFamily: 'ZCOOLQingKeHuangYou'
-        ),
+            primarySwatch: Colors.indigo, fontFamily: 'ZCOOLQingKeHuangYou'),
         initialRoute: HomePage.routeName,
         routes: {
-          HomePage.routeName: (context)=>HomePage(),
-          MainPage.routeName: (context) =>
-              MainPage(title: 'Local Bus(Dhaka route)'),
+          HomePage.routeName: (context) => HomePage(),
+          LocalBusMain.routeName: (context) =>
+              LocalBusMain(title: 'Local Bus(Dhaka route)'),
           BusDetails.routeName: (context) => BusDetails(),
           ConsciousInfoPage.routeName: (context) => ConsciousInfoPage(),
           Places.routeName: (context) => Places(),
           PlaceDetails.routeName: (context) => PlaceDetails(),
+          Hospitals.routeName: (context) => Hospitals(),
+          HotlineNumbers.routeName: (context) => HotlineNumbers(),
+          ShoppingMalls.routeName: (context) => ShoppingMalls(),
+          Universities.routeName: (context) => Universities(),
+          TrainStation.routeName: (context) => TrainStation(),
         },
       ),
     );
