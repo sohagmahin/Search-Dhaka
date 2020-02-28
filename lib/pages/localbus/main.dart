@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:local_bus_dhaka_route/pages/localbus/conscious_info_page.dart';
 import 'input_page.dart';
 import 'all_bus_list.dart';
 import '../../widget/home_page_drawer.dart';
 
 const kButtomTextStyle = TextStyle(fontWeight: FontWeight.bold);
 
-enum FilterStatus { findNearestStop }
+enum FilterStatus { findNearestStop, consciousPage }
 enum PageStatus { inputPage, allBusPage }
 
 class LocalBusMain extends StatefulWidget {
@@ -46,12 +47,19 @@ class _LocalBusMainState extends State<LocalBusMain> {
                     content: Text('This feature will coming soon!'),
                   ));
         }
+        if (status == FilterStatus.consciousPage) {
+          Navigator.of(context).pushNamed(ConsciousInfoPage.routeName);
+        }
       },
       itemBuilder: (_) {
         return [
           PopupMenuItem(
             child: Text('Find Nearest Stop'),
             value: FilterStatus.findNearestStop,
+          ),
+          PopupMenuItem(
+            child: Text('Conscious'),
+            value: FilterStatus.consciousPage,
           ),
         ];
       },
