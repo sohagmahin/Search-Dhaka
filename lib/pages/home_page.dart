@@ -9,6 +9,7 @@ import 'package:local_bus_dhaka_route/pages/shopping_mall/shopping_malls.dart';
 import 'package:local_bus_dhaka_route/pages/tourist/places.dart';
 import 'package:local_bus_dhaka_route/pages/train/TrainStation.dart';
 import 'package:local_bus_dhaka_route/pages/hotline/hotline_numbers.dart';
+import 'package:local_bus_dhaka_route/widget/home_page_drawer.dart';
 
 class HomePage extends StatelessWidget {
   static const routeName = '/';
@@ -22,6 +23,7 @@ class HomePage extends StatelessWidget {
           title: Text('Home Page'),
           centerTitle: true,
         ),
+        drawer: HomePageDrawer(),
         body: Padding(
           padding: const EdgeInsets.all(10.0),
           child: GridView.count(
