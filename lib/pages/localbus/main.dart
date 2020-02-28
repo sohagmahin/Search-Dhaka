@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'input_page.dart';
 import 'all_bus_list.dart';
@@ -24,19 +23,15 @@ class _LocalBusMainState extends State<LocalBusMain> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () => exitDialog(context),
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('Local Bus Dhaka route'),
-          centerTitle: true,
-          actions: <Widget>[_buildPopupMenuButton(context)],
-        ),
-        drawer: HomePageDrawer(),
-        backgroundColor: Colors.indigo, //  Color(0xff3f51b5)
-        bottomNavigationBar: _buildBottomNavigationBar(),
-        body: selectedPage == PageStatus.inputPage ? InputPage() : AllBusList(),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Local Bus Dhaka route'),
+        centerTitle: true,
+        actions: <Widget>[_buildPopupMenuButton(context)],
       ),
+      backgroundColor: Colors.indigo, //  Color(0xff3f51b5)
+      bottomNavigationBar: _buildBottomNavigationBar(),
+      body: selectedPage == PageStatus.inputPage ? InputPage() : AllBusList(),
     );
   }
 
@@ -104,25 +99,6 @@ class _LocalBusMainState extends State<LocalBusMain> {
               value == 0 ? PageStatus.inputPage : PageStatus.allBusPage;
         });
       },
-    );
-  }
-
-  Future<bool> exitDialog(BuildContext context) {
-    return showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text('Do you want to exit'),
-        actions: <Widget>[
-          FlatButton(
-            child: Text('No'),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
-          FlatButton(
-            child: Text('Yes'),
-            onPressed: () => exit(0),
-          ),
-        ],
-      ),
     );
   }
 }
