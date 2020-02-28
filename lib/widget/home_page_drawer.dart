@@ -17,33 +17,7 @@ class HomePageDrawer extends StatelessWidget {
                 automaticallyImplyLeading: false,
                 centerTitle: true,
               ),
-              //_buildHeaderContainer(context),
-              SizedBox(
-                height: 10,
-              ),
-              ListTile(
-                title: Text(
-                  'সচেতনতা',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                leading: Icon(Icons.library_books),
-                onTap: () {
-                  Navigator.of(context).pushNamed(ConsciousInfoPage.routeName);
-                },
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              ListTile(
-                title: Text(
-                  'Tourist Place',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                leading: Icon(Icons.place),
-                onTap: () {
-                  Navigator.of(context).pushNamed(Places.routeName);
-                },
-              ),
+//              _buildHeaderContainer(context),
               SizedBox(
                 height: 10,
               ),
