@@ -1,6 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:local_bus_dhaka_route/main.dart';
 import 'package:local_bus_dhaka_route/pages/localbus/main.dart';
 import 'package:local_bus_dhaka_route/pages/university/universities.dart';
 import 'package:local_bus_dhaka_route/pages/hospital/hospitals.dart';
@@ -14,41 +15,63 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Home Page'),
-        centerTitle: true,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: GridView.count(
-          crossAxisCount: 2,
-          crossAxisSpacing: 15,
-          mainAxisSpacing: 15,
-          children: <Widget>[
-            CustomButton(color: Colors.greenAccent,iconData: FontAwesomeIcons.bus,title: 'Local Bus',onPressed: (){
-              Navigator.of(context).pushNamed(LocalBusMain.routeName);
-            },),
-            CustomButton(color: Colors.lightGreen,iconData: FontAwesomeIcons.university,title: 'University',onPressed: (){
-              Navigator.of(context).pushNamed(Universities.routeName);
-            }),
-            CustomButton(color: Colors.blue,iconData: FontAwesomeIcons.hospital,title: 'Hospital',onPressed: (){
-              Navigator.of(context).pushNamed(Hospitals.routeName);
-            }),
-            CustomButton(color: Colors.orange,iconData: Icons.place,title: 'Tourist Spot',onPressed: (){
-              Navigator.of(context).pushNamed(Places.routeName);
-            }),
-            CustomButton(color: Colors.amber,iconData: FontAwesomeIcons.train,title: 'Train Station',onPressed: (){
-              Navigator.of(context).pushNamed(TrainStation.routeName);
-            }),
-            CustomButton(color: Colors.tealAccent,iconData: FontAwesomeIcons.shopify,title: 'Shopping Mall',onPressed: (){
-              Navigator.of(context).pushNamed(ShoppingMalls.routeName);
-            }),
-            CustomButton(color: Colors.indigoAccent,iconData: FontAwesomeIcons.ambulance,title: 'Hotline Number',onPressed: (){
-              Navigator.of(context).pushNamed(HotlineNumbers.routeName);
-            })
-          ],
+    return WillPopScope(
+      onWillPop: ()=>exitDialog(context),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Home Page'),
+          centerTitle: true,
         ),
+        body: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: GridView.count(
+            crossAxisCount: 2,
+            crossAxisSpacing: 15,
+            mainAxisSpacing: 15,
+            children: <Widget>[
+              CustomButton(color: Colors.greenAccent,iconData: FontAwesomeIcons.bus,title: 'Local Bus',onPressed: (){
+                Navigator.of(context).pushNamed(LocalBusMain.routeName);
+              },),
+              CustomButton(color: Colors.lightGreen,iconData: FontAwesomeIcons.university,title: 'University',onPressed: (){
+                Navigator.of(context).pushNamed(Universities.routeName);
+              }),
+              CustomButton(color: Colors.blue,iconData: FontAwesomeIcons.hospital,title: 'Hospital',onPressed: (){
+                Navigator.of(context).pushNamed(Hospitals.routeName);
+              }),
+              CustomButton(color: Colors.orange,iconData: Icons.place,title: 'Tourist Spot',onPressed: (){
+                Navigator.of(context).pushNamed(Places.routeName);
+              }),
+              CustomButton(color: Colors.amber,iconData: FontAwesomeIcons.train,title: 'Train Station',onPressed: (){
+                Navigator.of(context).pushNamed(TrainStation.routeName);
+              }),
+              CustomButton(color: Colors.tealAccent,iconData: FontAwesomeIcons.shopify,title: 'Shopping Mall',onPressed: (){
+                Navigator.of(context).pushNamed(ShoppingMalls.routeName);
+              }),
+              CustomButton(color: Colors.indigoAccent,iconData: FontAwesomeIcons.ambulance,title: 'Hotline Number',onPressed: (){
+                Navigator.of(context).pushNamed(HotlineNumbers.routeName);
+              })
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Future<bool> exitDialog(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('Do you want to exit'),
+        actions: <Widget>[
+          FlatButton(
+            child: Text('No'),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+          FlatButton(
+            child: Text('Yes'),
+            onPressed: () => exit(0),
+          ),
+        ],
       ),
     );
   }
