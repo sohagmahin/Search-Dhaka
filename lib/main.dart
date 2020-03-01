@@ -3,6 +3,7 @@ import 'pages/localbus/main.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import './provider/bus_list_provider.dart';
+import 'package:local_bus_dhaka_route/provider/place_provider.dart';
 import 'package:local_bus_dhaka_route/pages/localbus/bus_details.dart';
 import 'pages/localbus/conscious_info_page.dart';
 import 'pages/tourist/places.dart';
@@ -24,8 +25,11 @@ class LocalBus extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations(
         [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-    return ChangeNotifierProvider<BusListProvider>(
-      create: (context) => BusListProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => BusListProvider()),
+        ChangeNotifierProvider(create: (context) => PlaceProvider()),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Local Bus',

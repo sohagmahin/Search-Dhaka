@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:local_bus_dhaka_route/models/place.dart';
+import 'package:local_bus_dhaka_route/provider/place_provider.dart';
+import 'package:provider/provider.dart';
 
 const Kgradient = LinearGradient(
-  colors: [Colors.deepOrange, Colors.yellowAccent],
+  colors: [Colors.indigoAccent, Colors.lightGreen],
   begin: Alignment.topLeft,
   end: Alignment.bottomRight,
   stops: [0.2, 1],
@@ -23,60 +26,68 @@ class PlaceDetails extends StatefulWidget {
 
 class _PlaceDetailsState extends State<PlaceDetails> {
   int _current = 0;
-
-  static const List<String> imgList = [
-    'https://nijhoom.b-cdn.net/wp-content/uploads/2018/08/lalbagh-fort-tomb-pari-bibi-600-o.jpg',
-    'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Lalbagh_Fort_Mosque-A-History-Teller.jpg/220px-Lalbagh_Fort_Mosque-A-History-Teller.jpg',
-    'https://upload.wikimedia.org/wikipedia/commons/a/a1/Lalbagh_Kella_%28Lalbagh_Fort%29_Dhaka_Bangladesh_2011_17.JPG',
-    'https://nijhoom.b-cdn.net/wp-content/uploads/2018/08/lalbagh-fort-mosque-600-o.jpg'
-  ];
+  List<String> imgList = [];
 
   @override
   Widget build(BuildContext context) {
+    var index = ModalRoute.of(context).settings.arguments;
+    List<Place> placeList =
+        Provider.of<PlaceProvider>(context, listen: true).places;
+    Place place = placeList[index];
+    imgList = place.imageList;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Lalbag Fort'),
         centerTitle: true,
       ),
       body: Container(
-        decoration: _buildBackgroundDecoration(),
+        decoration: _buildBackgroundDecoration(place.featureImageUrl),
         child: Column(
           children: [
-            _buildCarouselSlider(),
+            imgList != null ? _buildCarouselSlider() : Container(),
             Expanded(
               child: Container(
                 margin:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 20.0),
+                    const EdgeInsets.symmetric(vertical: 5, horizontal: 20.0),
                 color: Colors.transparent,
                 child: SingleChildScrollView(
                   child: Text(
-                    description,
+                    place.description,
                     style: TextStyle(fontSize: 20, color: Colors.white),
                     textAlign: TextAlign.justify,
                   ),
                 ),
               ),
             ),
-            _buildModalTriggerButton(),
+            _buildModalTriggerButton(place.visitingTime),
           ],
         ),
       ),
     );
   }
 
-  InkWell _buildModalTriggerButton() {
+  InkWell _buildModalTriggerButton(Map vTime) {
     return InkWell(
       onTap: () {
-        _buildModalBottomSheet();
+        _buildModalBottomSheet(vTime);
       },
       child: Container(
         height: 60,
         decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+                color: Colors.black,
+                blurRadius: 3,
+                spreadRadius: 2,
+                offset: Offset(0, -1))
+          ],
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(25.0),
             topRight: Radius.circular(25.0),
           ),
-          gradient: Kgradient,
+//          gradient: Kgradient,
+          color: Color(0xffE1E2E1),
         ),
         width: double.infinity,
         child: Center(
@@ -88,7 +99,64 @@ class _PlaceDetailsState extends State<PlaceDetails> {
     );
   }
 
-  void _buildModalBottomSheet() {
+  void _buildModalBottomSheet(Map vtime) {
+    Widget content = Column(
+      children: <Widget>[
+        Container(
+          height: 300,
+          width: 350,
+          padding: const EdgeInsets.only(top: 15),
+          child: Card(
+            color: Colors.transparent,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  vtime['summerH'],
+                  style: titleTextStyle,
+                ),
+                Text(
+                  vtime['summerB'],
+                  style: bodyTextStyle,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  vtime['winterH'],
+                  style: titleTextStyle,
+                ),
+                Text(
+                  vtime['winterB'],
+                  style: bodyTextStyle,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+//                            'Entry Fees',
+                  vtime['entryFeeH'],
+                  style: titleTextStyle,
+                ),
+                Text(
+                  vtime['entryFeeB'],
+                  style: bodyTextStyle,
+                ),
+              ],
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        Text(
+          vtime['closingTime'],
+          style:
+              TextStyle(fontSize: vtime['closingTime'].length < 32 ? 30 : 20,color: Colors.redAccent),
+        ),
+      ],
+    );
+
     showModalBottomSheet(
         context: context,
         builder: (context) {
@@ -97,73 +165,41 @@ class _PlaceDetailsState extends State<PlaceDetails> {
             color: Color(0xff471c06),
             child: Container(
               decoration: BoxDecoration(
-                gradient: Kgradient,
+//                gradient: Kgradient,
+                color: Colors.white,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20),
                   topRight: Radius.circular(20),
                 ),
               ),
-              child: Column(
-                children: <Widget>[
-                  Container(
-                    height: 300,
-                    width: 350,
-                    padding: const EdgeInsets.only(top: 15),
-                    child: Card(
-                      color: Colors.yellowAccent,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text(
-                            "April to September (Summer)",
-                            style: titleTextStyle,
-                          ),
-                          Text(
-                            "Tuesday to Saturday: 10:00 am - 6:00 pm\nMonday: 2:00 pm - 6:00 pm",
-                            style: bodyTextStyle,
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            "October to March (Winter)",
-                            style: titleTextStyle,
-                          ),
-                          Text(
-                            "Tuesday to Saturday: 9:00 am - 5:00 pm\nMonday: 1:30 pm - 5:00 pm",
-                            style: bodyTextStyle,
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            'Entry Fees',
-                            style: titleTextStyle,
-                          ),
-                          Text(
-                            'Bangladeshi Citizens: ৳ 20.00\nCitizens of SAARC Countries: ৳ 100.00\n'
-                            'Other Foreign Citizens: ৳ 200.00\n'
-                            'Students(till secondary school): ৳ 5.00',
-                            style: bodyTextStyle,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 10,),
-                  Text("Sunday: Closed",style: TextStyle(fontSize: 30),),
-                ],
-              ),
+              child: content,
             ),
           );
         });
+  }
+
+  List<Widget> child() {
+    return map<Widget>(
+      imgList,
+      (index, i) {
+        return Container(
+          margin: EdgeInsets.all(5.0),
+          child: ClipRRect(
+            borderRadius: BorderRadius.all(Radius.circular(5.0)),
+            child: Stack(children: <Widget>[
+              Image.network(i, fit: BoxFit.cover, width: 1000.0),
+            ]),
+          ),
+        );
+      },
+    ).toList();
   }
 
   Column _buildCarouselSlider() {
     return Column(
       children: [
         CarouselSlider(
-          items: child,
+          items: child(),
           autoPlay: true,
           enlargeCenterPage: true,
           aspectRatio: 2.0,
@@ -195,34 +231,19 @@ class _PlaceDetailsState extends State<PlaceDetails> {
     );
   }
 
-  final List child = map<Widget>(
-    imgList,
-    (index, i) {
-      return Container(
-        margin: EdgeInsets.all(5.0),
-        child: ClipRRect(
-          borderRadius: BorderRadius.all(Radius.circular(5.0)),
-          child: Stack(children: <Widget>[
-            Image.network(i, fit: BoxFit.cover, width: 1000.0),
-          ]),
-        ),
-      );
-    },
-  ).toList();
-
-  BoxDecoration _buildBackgroundDecoration() {
+  BoxDecoration _buildBackgroundDecoration(String imgUrl) {
     return BoxDecoration(
       // backgroundBlendMode: BlendMode.dstATop,
       //color: Colors.deepOrange,
 
-      gradient: LinearGradient(
-          colors: [Colors.deepOrange, Colors.yellowAccent],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          stops: [0.5, 1]),
+//      gradient: LinearGradient(
+//          colors: [Colors.deepOrange, Colors.yellowAccent],
+//          begin: Alignment.topLeft,
+//          end: Alignment.bottomRight,
+//          stops: [0.5, 1]),
+      color: Colors.black,
       image: DecorationImage(
-          image: NetworkImage(
-              'https://cdn.pixabay.com/photo/2017/08/30/22/33/fort-aurangabad-2698844_960_720.jpg'),
+          image: NetworkImage(imgUrl),
           fit: BoxFit.cover,
           colorFilter: ColorFilter.mode(Colors.black54, BlendMode.dstATop)),
     );
@@ -238,13 +259,3 @@ List<T> map<T>(List list, Function handler) {
 
   return result;
 }
-
-const String description = "The Mughal prince Muhammad Azam, "
-    "third son of Aurangzeb started the work of the fort in 1678 during his vice-royalty in Bengal. He stayed in Bengal for 15 months. "
-    "The fort remained incomplete when he was called away by his father Aurangzeb."
-    "Shaista Khan was the new subahdar of Dhaka in that time, and he did not complete the fort."
-    "In 1684, the daughter of Shaista Khan named Iran Dukht Pari Bibi died there. After her death,"
-    "he started to think the fort as unlucky, and left the structure incomplete."
-    "[2] Among the three major parts of Lalbagh Fort, one is the tomb of Bibi Pari.After Shaista Khan left Dhaka, it lost its popularity."
-    "The main cause was that the capital was moved from Dhaka to Murshidabad. After the end of the royal Mughal period, the fort became abandoned."
-    "In 1844, the area acquired its name as Lalbagh replacing Aurangabad, and the fort became Lalbagh Fort.[3]\nCredit : Wikipedia";
