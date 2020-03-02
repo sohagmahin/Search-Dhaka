@@ -2,14 +2,16 @@ import 'dart:collection';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:local_bus_dhaka_route/models/location.dart';
 import 'package:local_bus_dhaka_route/models/place.dart';
 
 class PlaceProvider extends ChangeNotifier {
   List<Place> _placeList = [
     Place(
       name: 'Lalbagh Fort',
-      location: 'Lalbagh Rd, Dhaka 1211',
+      address: 'Lalbagh Rd, Dhaka 1211',
       description: lalbaghFort_description,
+      location: Location(placeName: 'Lalbagh Fort',latitude: 23.718856,longitude: 90.388176),
       featureImageUrl:
           'https://cdn.pixabay.com/photo/2017/08/30/22/33/fort-aurangabad-2698844_960_720.jpg',
       imageList: lalbaghFort_imageList,
@@ -21,8 +23,9 @@ class PlaceProvider extends ChangeNotifier {
     ),
     Place(
       name: 'Ahsan Manzil',
-      location: '18 kumartuli, Islampur Rd, Dhaka 1100',
+      address: '18 kumartuli, Islampur Rd, Dhaka 1100',
       description: ahsanManzil_description,
+      location: Location(placeName: 'Ahsan Manzil',latitude: 23.708604,longitude: 90.406003),
       featureImageUrl:
           'https://c7.alamy.com/comp/HTEYEP/dhaka-bangladesh-february-2017-the-pink-palace-of-ashan-manjil-seen-HTEYEP.jpg',
       imageList: ahsanManzil_imageList,
@@ -34,8 +37,9 @@ class PlaceProvider extends ChangeNotifier {
     ),
     Place(
       name: 'Shaheed Minar',
-      location: 'Shahīd Minār, Secretariate Road, Dhaka',
+      address: 'Shahīd Minār, Secretariate Road, Dhaka',
       description: sohidMinar_description,
+      location: Location(placeName: 'Shaheed Minar',latitude: 23.727154,longitude: 90.396919),
       featureImageUrl:
           'https://www.ontaheen.com/wp-content/uploads/2018/02/Shahid-Minar-picture.jpg',
       imageList: sohidMinar_imageList,
@@ -47,8 +51,9 @@ class PlaceProvider extends ChangeNotifier {
     ),
     Place(
       name: 'Sonargaon',
-      location: 'Sonargaon Museum, Sonargaon',
+      address: 'Sonargaon Museum, Sonargaon',
       description: sonargaonMesuem_description,
+      location: Location(placeName: 'Sonargaon',latitude: 23.646047,longitude: 90.598711),
       featureImageUrl:
           'https://mytriphack.com/wp-content/uploads/2018/04/Sonargaon-museum-complex.jpg',
       imageList: sonargaon_imageList,
@@ -60,8 +65,9 @@ class PlaceProvider extends ChangeNotifier {
     ),
     Place(
       name: 'Bangladesh National Museum',
-      location: 'Shahbagh, Dhaka',
+      address: 'Shahbagh, Dhaka',
       description: nationalMesuem_description,
+      location: Location(placeName: 'National Museum',latitude: 23.737496,longitude: 90.394448),
       featureImageUrl:
           'https://einfon.com/wp-content/uploads/2017/06/National-Museum-of-Bangladesh.jpg',
       imageList: nationalMesuem_imageList,
@@ -73,8 +79,9 @@ class PlaceProvider extends ChangeNotifier {
     ),
     Place(
       name: 'Liberation War Museum',
-      location: 'Plot F11 A/B, Agargaon, Civic Centre, Dhaka 1207',
+      address: 'Plot F11 A/B, Agargaon, Civic Centre, Dhaka 1207',
       description: libarationWarMesuem_description,
+      location: Location(placeName: 'Libaration war museum',latitude: 23.775732,longitude: 90.369719),
       featureImageUrl:
           'https://steemitimages.com/p/C3TZR1g81UNaPs7vzNXHueW5ZM76DSHWEY7onmfLxcK2iPEsj9ATJUoK5MuyKqEyHneLiFsobLfsLXDZagXSC2RySCKXHAbCy7xLfN2nKmeBEppCyKPjU9U?format=match&mode=fit&width=640.jpg',
       imageList: libarationWarMesuem_imageList,
@@ -86,8 +93,9 @@ class PlaceProvider extends ChangeNotifier {
     ),
     Place(
       name: 'Bangladesh National Zoo',
-      location: ' Mirpur 1 zoo, Dhaka 1216',
+      address: ' Mirpur 1 zoo, Dhaka 1216',
       description: nationalZoo_description,
+      location: Location(placeName: 'National Zoo',latitude: 23.812227,longitude: 90.346938),
       featureImageUrl:
           'https://upload.wikimedia.org/wikipedia/commons/7/78/Bangladesh_national_zoo.jpg',
       imageList: nationalZoo_imageList,
