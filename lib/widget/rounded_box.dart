@@ -5,6 +5,8 @@ class RoundedBox extends StatelessWidget {
   final String title;
   final String location;
   final String imageUrl;
+  final Function functionOne;
+  final Function functionTwo;
   final Color startColor;
   final Color endColor;
   final Color iconColor;
@@ -14,6 +16,8 @@ class RoundedBox extends StatelessWidget {
     this.title,
     this.location,
     this.imageUrl,
+    this.functionOne,
+    this.functionTwo,
     this.startColor,
     this.endColor,
     this.iconColor,
@@ -107,11 +111,11 @@ class RoundedBox extends StatelessWidget {
               left: 120,
               child: Row(
                 children: <Widget>[
-                  _buildCircularButton(Icons.location_on, iconColor),
+                  _buildCircularButton(Icons.location_on, iconColor,functionOne),
                   SizedBox(
                     width: 20,
                   ),
-                  _buildCircularButton(Icons.navigation, iconColor),
+                  _buildCircularButton(Icons.navigation, iconColor,functionTwo),
                 ],
               ),
             )
@@ -121,11 +125,9 @@ class RoundedBox extends StatelessWidget {
     );
   }
 
-  InkWell _buildCircularButton(IconData iconData, Color iconColor) {
+  InkWell _buildCircularButton(IconData iconData, Color iconColor,Function onTap) {
     return InkWell(
-      onTap: () {
-        print('Button Pressed!');
-      },
+      onTap: onTap,
       child: Material(
         elevation: 15,
         shape: CircleBorder(),
