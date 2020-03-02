@@ -108,41 +108,43 @@ class _PlaceDetailsState extends State<PlaceDetails> {
           padding: const EdgeInsets.only(top: 15),
           child: Card(
             color: Colors.transparent,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  vtime['summerH'],
-                  style: titleTextStyle,
-                ),
-                Text(
-                  vtime['summerB'],
-                  style: bodyTextStyle,
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  vtime['winterH'],
-                  style: titleTextStyle,
-                ),
-                Text(
-                  vtime['winterB'],
-                  style: bodyTextStyle,
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    vtime['summerH'],
+                    style: titleTextStyle,
+                  ),
+                  Text(
+                    vtime['summerB'],
+                    style: bodyTextStyle,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    vtime['winterH'],
+                    style: titleTextStyle,
+                  ),
+                  Text(
+                    vtime['winterB'],
+                    style: bodyTextStyle,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
 //                            'Entry Fees',
-                  vtime['entryFeeH'],
-                  style: titleTextStyle,
-                ),
-                Text(
-                  vtime['entryFeeB'],
-                  style: bodyTextStyle,
-                ),
-              ],
+                    vtime['entryFeeH'],
+                    style: titleTextStyle,
+                  ),
+                  Text(
+                    vtime['entryFeeB'],
+                    style: bodyTextStyle,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
