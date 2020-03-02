@@ -57,7 +57,46 @@ class PlaceProvider extends ChangeNotifier {
       endColor: Colors.deepOrange,
       iconColor: Colors.deepOrange,
       shadowColor: Colors.lightGreenAccent,
-    )
+    ),
+    Place(
+      name: 'Bangladesh National Museum',
+      location: 'Shahbagh, Dhaka',
+      description: nationalMesuem_description,
+      featureImageUrl:
+          'https://einfon.com/wp-content/uploads/2017/06/National-Museum-of-Bangladesh.jpg',
+      imageList: nationalMesuem_imageList,
+      visitingTime: nationalMesuem_Vtime,
+      startColor: Colors.blue,
+      endColor: Colors.limeAccent,
+      iconColor: Colors.deepOrange,
+      shadowColor: Colors.lightGreenAccent,
+    ),
+    Place(
+      name: 'Liberation War Museum',
+      location: 'Plot F11 A/B, Agargaon, Civic Centre, Dhaka 1207',
+      description: libarationWarMesuem_description,
+      featureImageUrl:
+          'https://steemitimages.com/p/C3TZR1g81UNaPs7vzNXHueW5ZM76DSHWEY7onmfLxcK2iPEsj9ATJUoK5MuyKqEyHneLiFsobLfsLXDZagXSC2RySCKXHAbCy7xLfN2nKmeBEppCyKPjU9U?format=match&mode=fit&width=640.jpg',
+      imageList: libarationWarMesuem_imageList,
+      visitingTime: libarationWarMesuem_Vtime,
+      startColor: Colors.indigoAccent,
+      endColor: Colors.cyanAccent,
+      iconColor: Colors.deepOrange,
+      shadowColor: Colors.lightGreenAccent,
+    ),
+    Place(
+      name: 'Bangladesh National Zoo',
+      location: ' Mirpur 1 zoo, Dhaka 1216',
+      description: nationalZoo_description,
+      featureImageUrl:
+          'https://upload.wikimedia.org/wikipedia/commons/7/78/Bangladesh_national_zoo.jpg',
+      imageList: nationalZoo_imageList,
+      visitingTime: nationalZoo_Vtime,
+      startColor: Colors.deepOrange,
+      endColor: Colors.yellowAccent,
+      iconColor: Colors.deepOrange,
+      shadowColor: Colors.lightGreenAccent,
+    ),
   ];
 
   List<Place> get places => UnmodifiableListView(_placeList);
@@ -89,6 +128,22 @@ const List<String> sonargaon_imageList = [
   'https://c7.alamy.com/comp/B0PW65/interior-of-an-old-house-in-sonargaon-bangladesh-B0PW65.jpg',
   'https://c7.alamy.com/comp/JD929B/hotel-sonargaon-is-a-renowned-5-stars-internationally-chain-hotel-JD929B.jpg',
   'https://c7.alamy.com/comp/EWEF54/panam-city-as-the-lost-town-of-bengal-one-the-most-popular-heritage-EWEF54.jpg'
+];
+const List<String> nationalMesuem_imageList = [
+  'https://c7.alamy.com/comp/KX2DTE/bangladesh-national-museum-building-2018-KX2DTE.jpg',
+  'https://c7.alamy.com/comp/J74RA1/bangladesh-national-museum-building-decorates-with-lights-on-occasion-J74RA1.jpg',
+  'https://c7.alamy.com/comp/MA5FRG/bangladesh-national-museum-in-dhaka-MA5FRG.jpg',
+  'https://c7.alamy.com/comp/MA5GGK/bangladesh-national-museum-in-dhaka-MA5GGK.jpg'
+];
+const List<String> libarationWarMesuem_imageList = [
+  'https://steemitimages.com/p/C3TZR1g81UNaPs7vzNXHueW5ZM76DSHWEY7onmfLxcK2iPEsj9ATJUoK5MuyKqEyHneLiFsobLfsLXDZagXSC2RySCKXHAbCy7xLfN2nKmeBEppCyKPjU9U?format=match&mode=fit&width=640.jpg',
+  'https://assetsds.cdnedge.bluemix.net/sites/default/files/styles/very_big_2/public/news/images/re-visiting_the_liberation_war_museum1.jpg?itok=KS8XNq8Q.jpg',
+  'https://live.staticflickr.com/5539/30281210456_20f0e8fd76_b.jpg'
+];
+const List<String> nationalZoo_imageList = [
+  'https://c7.alamy.com/comp/GCCCYR/dhaka-bangladesh-9th-july-2016-visitors-look-at-peacock-in-their-enclosure-GCCCYR.jpg',
+  'https://c7.alamy.com/comp/GCCCYG/dhaka-bangladesh-9th-july-2016-visitors-look-at-deer-in-their-enclosure-GCCCYG.jpg',
+  'https://upload.wikimedia.org/wikipedia/commons/7/78/Bangladesh_national_zoo.jpg'
 ];
 
 const String lalbaghFort_description = "The Mughal prince Muhammad Azam, "
@@ -139,6 +194,31 @@ const String sonargaonMesuem_description =
     "son of Nasiruddin Bughra Khan, Nam-i-Haq, a book on fiqh (jurisprudence), was written in elegant Persian poetry, in Sonargaon.[7] It is in 10 volumes and contains 180 poems. Though the authorship of this book has been ascribed to Shaikh Sharafu’d-Din Abu Tawwama, "
     "the author’s introduction testifies that the book was actually written by one of the disciples of Shaikh Sharafu’d-Din on the basis of his teachings.[8][9] The Fatwa-i-Tatarkhani was compiled at the initiative Tatar Khan, the Tughluq governor of Sonargaon.";
 
+const String nationalMesuem_description =
+    "Bangladesh National Museum, located at Shahbagh area in Dhaka, has very noticeable architectural design in its four-storied building. The area of this building is 20 thousand square meters, which has more than 83 thousand patterns in 46 galleries. "
+    "It is the largest museum not only in Bangladesh but also in South Asian countries. The first floor of the museum is seemed to be a small version of the whole of Bangladesh. A giant map of Bangladesh is placed on the 1st floor. You will see also see a miniature version of trees, animals,"
+    " Sundarbans, the lifestyle of the tribes, minerals, coins and various sculptures of the ancient period of Bangladesh."
+    "On the second floor of the building, you will see the evolution of civilization and the history of Bangladesh. This floor is decorated with various kinds of weapons, musical instruments, porcelain handicrafts, cottage industries, manuscripts, contemporary art of ancient Bangladesh."
+    "Apart from this, the third floor of the building has many paintings and world-class portraits of various celebrities in the world."
+    "To get knowledge about Bangladesh, the museum could be a suitable place. The national museum in Bangladesh has a library which has a collection of an estimated of 30 thousand to 40 thousand books. "
+    "This library has also been playing a special role in research in various fields. Apart from this, there is a Museum Auditorium, which is used for various workshops, seminars or meetings.";
+
+const String libarationWarMesuem_description =
+    "Liberation War Museum is the place that reminds the memory of Liberation War of Bangladesh. At present it is situated in Agargaon area of the capital city Dhaka. It was firstly established in Segunbagicha in 1996. That time it was located in the middle of the Shilpakala Academy and press club."
+    " But recently it has been shifted to Agargaon in its own building.In the museum, there are collections of various things since ancient civilization to the liberation of Bangladesh. "
+    "The collections are displayed in four galleries in such a way that can remind people the histories since the ancient civilization to the liberation war. In the first gallery, there are collections of archaeological remaining from the ancient civilization of Bengal."
+    "In the second gallery, there are collections from January 01, 1971 to April 30, 1971. Such as - the 7th March’s speech of Bangabandhu in 1971, interim government formation on April 17 at Baidyanathatala in Meherpur. "
+    "There is also a special exhibition of sound and light projection in this gallery. Images of Pakistani forces’ barbaric massacre on Bengalis on March 25 also appear in this gallery. Besides, there are images of genocide in the whole country."
+    "The third gallery contains all the memories from May 01 to December 16 during the war period. Memories of victory in the Liberation are in the fourth gallery."
+    "In the museum, there is a great chance to know about the history and culture of Bangladesh. That’s why every day many students and other people come to visit the museum.";
+
+const String nationalZoo_description =
+"The Bangladesh National Zoo is one of the most popular places for watching animals and entertainment. Among the many zoos in South Asia, Bangladesh National Zoo is famous. The number of birds and animals and the arrival of the visitors is the highest in number. "
+    "It has an area of 751 hectares (186 acres) of land. From the Zoo Data Center, It is known that, at present, there are 2,150 animals of 191 species in this Zoo. There are two lakes as well in the zoo that are that are home to thousands of migrating birds during winter."
+    "In 1950, the Dhaka zoo was set up for animal exhibition in the High Court complex in Dhaka. The Zoo was established to save wildlife, research, education and entertainment. In 1971, the zoo was transferred from the High Court premises to Mirpur. "
+    "The zoo was established on the banks of the Turag river of Mirpur. It was opened for visitors in 1974."
+    "The Bangladesh National Zoo has more than 30 million annual visitors, including people of all ages from home and abroad. The main animals displayed here are Royal Bengal Tiger, Crocodile, Emu, Impalas, Black Bear, Peacock, Deer, Elephants, Rhinoceros and Camelopard etc.";
+
 const Map<String, dynamic> LalbaghFort_Vtime = {
   'summerH': 'April to September (Summer)',
   'summerB':
@@ -183,12 +263,54 @@ const Map<String, dynamic> sonargaon_Vtime = {
 
 const Map<String, dynamic> shaheedMinar_Vtime = {
   'summerH': 'April to September (Summer)',
-  'summerB':
-      'Open 24 hours',
+  'summerB': 'Open 24 hours',
   'winterH': 'October to March (Winter)',
-  'winterB':
-      'Open 24 hours',
+  'winterB': 'Open 24 hours',
   'entryFeeH': 'Entry Fees',
   'entryFeeB': 'No Need',
   'closingTime': 'Always Open'
+};
+
+const Map<String, dynamic> nationalMesuem_Vtime = {
+  'summerH': 'April to September (Summer)',
+  'summerB':
+      'Saturday to Wednesday: 10:30 am - 5:30 pm\nFriday: 3.00 pm - 8:00 pm',
+  'winterH': 'October to March (Winter)',
+  'winterB':
+      'Saturday to Wednesday: 10:00 am - 4:30 pm\nFriday: 3:00 pm - 7:30 pm\n)'
+          'Ramadan: \nSaturday to Wednesday: 10:00 am - 4:30 pm',
+  'entryFeeH': 'Entry Fees',
+  'entryFeeB': 'Bangladeshi Citizens: ৳ 20.00 \n'
+      'Citizens of SAARC Countries: ৳ 20.00TK \n'
+      'Other Foreign Citizens: ৳ 100.00TK',
+  'closingTime': ''
+};
+
+const Map<String, dynamic> libarationWarMesuem_Vtime = {
+  'summerH': 'April to September (Summer)',
+  'summerB':
+      'Saturday to Thuesday: 10:00 am - 6:00 pm\nFriday: 3.00 pm - 8:00 pm',
+  'winterH': 'October to March (Winter)',
+  'winterB':
+      'Saturday to Thuesday: 10:00 am - 5:00 pm\n'
+          'Ramadan: \nMonday to Saturday: 10:00 am - 3:30 pm',
+  'entryFeeH': 'Entry Fees',
+  'entryFeeB': 'Bangladeshi Citizens: ৳ 20.00 \n'
+      'Citizens of SAARC Countries: ৳ 20.00TK \n'
+      'Other Foreign Citizens: ৳ 100.00TK',
+  'closingTime': 'Sunday : Closed'
+};
+
+const Map<String, dynamic> nationalZoo_Vtime = {
+  'summerH': 'April to September (Summer)',
+  'summerB':
+      'Monday to Saturday : 09:00 am - 6:00 pm',
+  'winterH': 'November to March (Winter)',
+  'winterB':
+      'Monday to Saturday : 08:00 am - 5:00 pm',
+  'entryFeeH': 'Main Gate Entry Fees',
+  'entryFeeB': 'Age 2 Years and Above: ৳ 30.00TK\n'
+      'Below 2 Years and Students: Free\n'
+      'Zoo Museum Entry Fee: ৳ 5.00TK',
+  'closingTime': 'Sunday : Closed'
 };
