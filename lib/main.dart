@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:local_bus_dhaka_route/pages/hospital/hospitallist.dart';
 import 'pages/localbus/main.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -10,7 +11,7 @@ import 'pages/tourist/places.dart';
 import 'pages/tourist/place_details.dart';
 import 'pages/home_page.dart';
 import 'pages/university/universities.dart';
-import 'pages/hospital/hospitals.dart';
+
 import 'pages/shopping_mall/shopping_malls.dart';
 import 'pages/train/TrainStation.dart';
 import 'pages/hotline/hotline_numbers.dart';

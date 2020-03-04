@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:local_bus_dhaka_route/pages/localbus/main.dart';
 import 'package:local_bus_dhaka_route/pages/university/universities.dart';
-import 'package:local_bus_dhaka_route/pages/hospital/hospitals.dart';
+
 import 'package:local_bus_dhaka_route/pages/shopping_mall/shopping_malls.dart';
 import 'package:local_bus_dhaka_route/pages/tourist/places.dart';
 import 'package:local_bus_dhaka_route/pages/train/TrainStation.dart';
 import 'package:local_bus_dhaka_route/pages/hotline/hotline_numbers.dart';
 import 'package:local_bus_dhaka_route/widget/home_page_drawer.dart';
+
+import 'hospital/hospitallist.dart';
 
 class HomePage extends StatelessWidget {
   static const routeName = '/';
