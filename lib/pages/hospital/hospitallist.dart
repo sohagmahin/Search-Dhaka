@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'hospitalRoundbox.dart';
 
 class Hospitals extends StatelessWidget {
-  static const routeName = '/';
+  static const routeName = '/hospitals';
   List<Sortmodel> _hospitalsilt = [
     Sortmodel(
       hospitalname: "BSMMU(PG)",
@@ -109,8 +109,8 @@ class Hospitals extends StatelessWidget {
               return Container(
                 margin: EdgeInsets.only(top: 05),
                 child: HospitalRoundedbox(
-                  hospitalname: _hospitalsilt[index].hospitalname,
-                  hospitallocation: _hospitalsilt[index].hostpitallocation,
+                  hospitalName: _hospitalsilt[index].hospitalname,
+                  hospitalLocation: _hospitalsilt[index].hostpitallocation,
                   picture: _hospitalsilt[index].picture,
                   icons: _hospitalsilt[index].icon,
                 ),
