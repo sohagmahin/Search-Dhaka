@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 import '../pages/tourist/place_details.dart';
 
+const fixedGradient = LinearGradient(
+  colors: [Colors.orange, Colors.yellowAccent],
+  begin: Alignment.centerLeft,
+  end: Alignment.centerRight,
+  stops: [0.5, 1],
+);
+
 class RoundedBox extends StatelessWidget {
   final String title;
   final String location;
@@ -13,9 +20,9 @@ class RoundedBox extends StatelessWidget {
   final Color shadowColor;
 
   RoundedBox({
-    this.title,
-    this.location,
-    this.imageUrl,
+    @required this.title,
+    @required this.location,
+    @required this.imageUrl,
     this.functionOne,
     this.functionTwo,
     this.startColor,
@@ -35,20 +42,15 @@ class RoundedBox extends StatelessWidget {
         height: 250,
         width: 400,
         decoration: BoxDecoration(
-//          boxShadow: [
-//            BoxShadow(
-//                color: shadowColor,
-//                blurRadius: 2,
-//                spreadRadius: 2,
-//                offset: Offset(0, 3))
-//          ],
           borderRadius: BorderRadius.circular(30.0),
-          gradient: LinearGradient(
-            colors: [startColor, endColor],
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight,
-            stops: [0.5, 1],
-          ),
+          gradient: startColor == null && endColor == null
+              ? fixedGradient
+              : LinearGradient(
+                  colors: [startColor, endColor],
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  stops: [0.5, 1],
+                ),
         ),
         child: Stack(
           children: <Widget>[
@@ -111,11 +113,13 @@ class RoundedBox extends StatelessWidget {
               left: 120,
               child: Row(
                 children: <Widget>[
-                  _buildCircularButton(Icons.location_on, iconColor,functionOne),
+                  _buildCircularButton(
+                      Icons.location_on, iconColor, functionOne),
                   SizedBox(
                     width: 20,
                   ),
-                  _buildCircularButton(Icons.navigation, iconColor,functionTwo),
+                  _buildCircularButton(
+                      Icons.navigation, iconColor, functionTwo),
                 ],
               ),
             )
@@ -125,7 +129,8 @@ class RoundedBox extends StatelessWidget {
     );
   }
 
-  InkWell _buildCircularButton(IconData iconData, Color iconColor,Function onTap) {
+  InkWell _buildCircularButton(
+      IconData iconData, Color iconColor, Function onTap) {
     return InkWell(
       onTap: onTap,
       child: Material(
