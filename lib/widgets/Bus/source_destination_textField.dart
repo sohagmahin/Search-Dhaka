@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:autocomplete_textfield/autocomplete_textfield.dart';
 import 'package:provider/provider.dart';
-import '../provider/bus_list_provider.dart';
-import '../util/constant.dart';
+import '../../provider/bus_list_provider.dart';
+import '../../util/constant.dart';
 
 class SourceDestinationTextField extends StatefulWidget {
   @override

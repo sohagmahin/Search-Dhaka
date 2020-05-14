@@ -3,7 +3,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../util/constant.dart';
 import 'package:provider/provider.dart';
 import '../../provider/bus_list_provider.dart';
-import '../../widget/Rounded_Card.dart';
+import '../../widgets/Bus/Rounded_Card.dart';
 
 class BusDetails extends StatelessWidget {
   static const routeName = '/busDtails';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:local_bus_dhaka_route/provider/bus_list_provider.dart';
-import '../pages/localbus/bus_details.dart';
+import '../../pages/localbus/bus_details.dart';
 import 'package:provider/provider.dart';
 
 class BusTile extends StatelessWidget {

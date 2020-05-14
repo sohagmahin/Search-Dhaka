@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../widget/source_destination_textField.dart';
-import '../../widget/bus_list.dart';
+import '../../widgets/Bus/source_destination_textField.dart';
+import '../../widgets/Bus/bus_list.dart';
 import 'package:provider/provider.dart';
 import '../../provider/bus_list_provider.dart';
 

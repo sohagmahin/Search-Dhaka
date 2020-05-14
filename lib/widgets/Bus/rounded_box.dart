@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../pages/tourist/place_details.dart';
+import '../../pages/tourist/place_details.dart';
 
 const fixedGradient = LinearGradient(
   colors: [Colors.orange, Colors.yellowAccent],
