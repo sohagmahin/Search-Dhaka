@@ -49,7 +49,18 @@ class BusDetails extends StatelessWidget {
             stopageList[index],
             style: TextStyle(fontSize: 18),
           ),
-          Icon(index != (stopageList.length - 1) ? Icons.arrow_downward : null),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Icon(
+                index != (stopageList.length - 1) ? Icons.arrow_downward : null,
+                color: Colors.white,
+              ),
+              Icon(index != (stopageList.length - 1)
+                  ? Icons.arrow_upward
+                  : null),
+            ],
+          ),
         ],
       ),
     );
