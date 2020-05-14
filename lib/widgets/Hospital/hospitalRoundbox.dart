@@ -7,8 +7,8 @@ class RoundedBox extends StatelessWidget {
   final location;
   final picture;
   final icon;
-  RoundedBox(
-      {this.name, this.location, this.picture, this.icon});
+
+  RoundedBox({this.name, this.location, this.picture, this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class RoundedBox extends StatelessWidget {
           child: Stack(
             children: <Widget>[
               Opacity(
-                opacity: 0.6,
+                opacity: 0.75,
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -73,9 +73,9 @@ class RoundedBox extends StatelessWidget {
                         Row(
                           children: <Widget>[
                             Container(
-                                margin: EdgeInsets.only(top: 15),
-                                child: Icon(Icons.local_hospital,
-                                    size: 25, color: Colors.white),
+                              margin: EdgeInsets.only(top: 15),
+                              child: Icon(Icons.local_hospital,
+                                  size: 25, color: Colors.white),
                             ),
                             Container(
                               margin: EdgeInsets.only(left: 03, top: 15),
@@ -83,10 +83,10 @@ class RoundedBox extends StatelessWidget {
                                 child: Text(
                                   name,
                                   style: TextStyle(
-                                      color: Colors.black
-                                      ,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold),
+                                    color: Colors.black,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                             ),
@@ -109,8 +109,8 @@ class RoundedBox extends StatelessWidget {
                                   location,
                                   style: TextStyle(
                                       color: Colors.black,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold),
+                                      fontSize: 16,
+                                  ),
                                 ),
                               ),
                             ),
@@ -157,7 +157,9 @@ class _buildButton extends StatelessWidget {
   final IconData icons;
   final Color colors;
   final Function onPressed;
+
   _buildButton({this.icons, this.colors, this.onPressed});
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
