@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class HospitalRoundedbox extends StatelessWidget {
+class RoundedBox extends StatelessWidget {
 //  static const routeName = '/hospital/hospitalsPage';
 
-  final hospitalName;
-  final hospitalLocation;
+  final name;
+  final location;
   final picture;
-  final icons;
-  HospitalRoundedbox(
-      {this.hospitalName, this.hospitalLocation, this.picture, this.icons});
+  final icon;
+  RoundedBox(
+      {this.name, this.location, this.picture, this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +55,7 @@ class HospitalRoundedbox extends StatelessWidget {
                         decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             image: DecorationImage(
-                              image: NetworkImage(icons),
+                              image: NetworkImage(icon),
                               fit: BoxFit.cover,
                             )),
                       ),
@@ -81,7 +81,7 @@ class HospitalRoundedbox extends StatelessWidget {
                               margin: EdgeInsets.only(left: 03, top: 15),
                               child: Center(
                                 child: Text(
-                                  hospitalName,
+                                  name,
                                   style: TextStyle(
                                       color: Colors.black
                                       ,
@@ -106,7 +106,7 @@ class HospitalRoundedbox extends StatelessWidget {
                               margin: EdgeInsets.only(left: 03, top: 05),
                               child: Center(
                                 child: Text(
-                                  hospitalLocation,
+                                  location,
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 18,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:local_bus_dhaka_route/models/location.dart';
-import '../../widget/rounded_box.dart';
+import '../../widgets/Bus/rounded_box.dart';
 import 'package:provider/provider.dart';
 import 'package:local_bus_dhaka_route/provider/place_provider.dart';
 import 'place_details.dart';

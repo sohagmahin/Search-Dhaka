@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'hospitalRoundbox.dart';
+import '../../widgets/Hospital/hospitalRoundbox.dart';
 
 class Hospitals extends StatelessWidget {
   static const routeName = '/hospitals';
-  List<Sortmodel> _hospitalsilt = [
-    Sortmodel(
+  List<HospitalModel> _hospitalsilt = [
+    HospitalModel(
       hospitalname: "BSMMU(PG)",
       hostpitallocation: "Shahbagh Rd, Dhaka 1000",
       picture:
@@ -14,14 +14,14 @@ class Hospitals extends StatelessWidget {
       icon:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTGDAN1EHLtmHB2fwyWFI3P93CWg0oEDGVWMaOBVSyq2MiRTuUl',
     ),
-    Sortmodel(
+    HospitalModel(
       hospitalname: "DHAKA MEDICAL COLLEGE",
       hostpitallocation: "53/1, Johnson Road, Dhaka-1100,",
       picture: "https://i.ytimg.com/vi/KpcgDeM8L3w/maxresdefault.jpg",
       icon:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSBHby6B7f2kRML2ycwilKzg9N6tElPav8trmnmey0LNS7zQXG_',
     ),
-    Sortmodel(
+    HospitalModel(
       hospitalname: "Sir Salimullah Medical College",
       hostpitallocation: "Mitford, Dhaka,",
       picture:
@@ -29,7 +29,7 @@ class Hospitals extends StatelessWidget {
       icon:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQL8ErkRUsmJMVsVB95RRh8B2--Fw8vOts_eXSQuhMq7z9JBccn',
     ),
-    Sortmodel(
+    HospitalModel(
       hospitalname: " Suhrawardy Medical College",
       hostpitallocation: "Sher-e-Bangla Nagor,Dhaka",
       picture:
@@ -37,7 +37,7 @@ class Hospitals extends StatelessWidget {
       icon:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUrCK3THfa6n0Ez5HIYPmCWJWv09vrvIwuSwXpJQOitO_YW1pS&s',
     ),
-    Sortmodel(
+    HospitalModel(
       hospitalname: "Apollo Hospitals",
       hostpitallocation: " Bashundhara Residential Area",
       picture:
@@ -45,7 +45,7 @@ class Hospitals extends StatelessWidget {
       icon:
           'https://s3-ap-southeast-1.amazonaws.com/practo-fabric/apollo-speciality-hospital-omr-chennai-1469277648-579365d07795a.png',
     ),
-    Sortmodel(
+    HospitalModel(
       hospitalname: "SQUARE HOSPITALS LTD.",
       hostpitallocation: "West Panthapath,Dhaka 1205 ",
       picture:
@@ -53,7 +53,7 @@ class Hospitals extends StatelessWidget {
       icon:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR8tPxzlX5zVde469zbCGLEC8ZgMewh_Zi6mojPkL8xbwQd_X2_',
     ),
-    Sortmodel(
+    HospitalModel(
       hospitalname: "Labaid Specialized Hospital",
       hostpitallocation: "Road No 4,Dhanmondi,Dhaka 1205",
       picture:
@@ -61,15 +61,14 @@ class Hospitals extends StatelessWidget {
       icon:
           'https://www.jagojobs.com/media/company_logos/2017July/Labaid_Hospital_logo_20170704114847_2365.png',
     ),
-    Sortmodel(
+    HospitalModel(
       hospitalname: "Green Life Hospital",
       hostpitallocation: " Green Rd,Dhaka",
       picture:
           "https://gmfadmission.in/wp-content/uploads/2018/03/green-life-hospital.jpg",
-      icon:
-          'https://www.moumaachi.com/upload/company/251bdb2df3.jpg',
+      icon: 'https://www.moumaachi.com/upload/company/251bdb2df3.jpg',
     ),
-    Sortmodel(
+    HospitalModel(
       hospitalname: "Ibn Sina Hospital",
       hostpitallocation: "Dhanmondi ,Dhaka",
       picture:
@@ -77,7 +76,7 @@ class Hospitals extends StatelessWidget {
       icon:
           'https://assetsds.cdnedge.bluemix.net/sites/default/files/styles/amp_metadata_content_image_min_696px_wide/public/feature/images/ibn-sina.jpg?itok=YKa5QIqV',
     ),
-        Sortmodel(
+    HospitalModel(
       hospitalname: " Popular Hospital",
       hostpitallocation: "Dhanmondi, Dhaka-1205",
       picture:
@@ -85,11 +84,10 @@ class Hospitals extends StatelessWidget {
       icon:
           'https://hirebangladeshi.com/uploads/company/logo/4bf8b729-dfb1-4765-a9f1-4dfa86ee4c73/p.png',
     ),
-        Sortmodel(
+    HospitalModel(
       hospitalname: "Bangladesh Eye Hospital",
       hostpitallocation: "Satmasjid Road,Dhanmondi, Dhaka",
-      picture:
-          "https://i.ytimg.com/vi/wGj7s_qmNf4/maxresdefault.jpg",
+      picture: "https://i.ytimg.com/vi/wGj7s_qmNf4/maxresdefault.jpg",
       icon:
           'https://bdbusinessfinder.com/wp-content/uploads/2019/04/eyeR4-780x270.jpg',
     ),
@@ -108,11 +106,11 @@ class Hospitals extends StatelessWidget {
             itemBuilder: (context, index) {
               return Container(
                 margin: EdgeInsets.only(top: 05),
-                child: HospitalRoundedbox(
-                  hospitalName: _hospitalsilt[index].hospitalname,
-                  hospitalLocation: _hospitalsilt[index].hostpitallocation,
+                child: RoundedBox(
+                  name: _hospitalsilt[index].hospitalname,
+                  location: _hospitalsilt[index].hostpitallocation,
                   picture: _hospitalsilt[index].picture,
-                  icons: _hospitalsilt[index].icon,
+                  icon: _hospitalsilt[index].icon,
                 ),
               );
             }),
@@ -121,12 +119,12 @@ class Hospitals extends StatelessWidget {
   }
 }
 
-class Sortmodel {
+class HospitalModel {
   final String hospitalname;
   final String hostpitallocation;
   final String picture;
   final String icon;
 
-  Sortmodel(
+  HospitalModel(
       {this.hospitalname, this.hostpitallocation, this.picture, this.icon});
 }

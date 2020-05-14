@@ -9,7 +9,7 @@ import 'package:local_bus_dhaka_route/pages/shopping_mall/shopping_malls.dart';
 import 'package:local_bus_dhaka_route/pages/tourist/places.dart';
 import 'package:local_bus_dhaka_route/pages/train/TrainStation.dart';
 import 'package:local_bus_dhaka_route/pages/hotline/hotline_numbers.dart';
-import 'package:local_bus_dhaka_route/widget/home_page_drawer.dart';
+import 'package:local_bus_dhaka_route/widgets/Bus/home_page_drawer.dart';
 
 import 'hospital/hospitallist.dart';
 
@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
       onWillPop: ()=>exitDialog(context),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Home Page'),
+          title: Text('Search Dhaka'),
           centerTitle: true,
         ),
         drawer: HomePageDrawer(),

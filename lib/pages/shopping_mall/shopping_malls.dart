@@ -2,7 +2,7 @@ import 'package:android_intent/android_intent.dart';
 import 'package:flutter/material.dart';
 import 'package:local_bus_dhaka_route/models/location.dart';
 import 'package:local_bus_dhaka_route/models/place.dart';
-import 'package:local_bus_dhaka_route/widget/rounded_box.dart';
+import 'package:local_bus_dhaka_route/widgets/Bus/rounded_box.dart';
 
 class ShoppingMalls extends StatelessWidget {
   static const routeName = '/shopping_mall/shopping_malls';
