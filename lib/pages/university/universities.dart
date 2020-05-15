@@ -41,17 +41,53 @@ class Universities extends StatelessWidget {
             itemBuilder: (context, index) {
               return Container(
                 margin: EdgeInsets.only(top: 05),
-                child: RoundedBox(
-                  name: _universities[index].name,
-                  location: _universities[index].location,
-                  picture: _universities[index].picture,
-                  icon: _universities[index].icon,
+                child: InkWell(
+                  onTap: (){
+                    _showPopup(context, _universities[index].name,_universities[index].location);
+                  },
+                  child: RoundedBox(
+                    name: _universities[index].name,
+                    location: _universities[index].location,
+                    picture: _universities[index].picture,
+                    icon: _universities[index].icon,
+                  ),
                 ),
               );
             }),
       ),
     );
   }
+}
+
+Future<bool> _showPopup(BuildContext context, title, subtitle) {
+  return showDialog(
+      context: context,
+      builder: (context) => SimpleDialog(
+        contentPadding: EdgeInsets.only(left: 20),
+        title: Text(
+          title,
+          style: TextStyle(fontSize: 22),
+          overflow: TextOverflow.fade,
+        ),
+        children: <Widget>[
+          SizedBox(
+            height: 20,
+          ),
+          Row(
+            children: <Widget>[
+              Icon(Icons.location_on),
+              Text(
+                subtitle,
+                style: TextStyle(fontSize: 17),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 20,
+          ),
+        ],
+      ));
 }
 
 class UniversityModel {

@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/Hospital/hospitalRoundbox.dart';
+import '../../widgets/Hospital/SimpleCustomPopUp.dart';
 
 class Hospitals extends StatelessWidget {
   static const routeName = '/hospitals';
@@ -106,17 +109,54 @@ class Hospitals extends StatelessWidget {
             itemBuilder: (context, index) {
               return Container(
                 margin: EdgeInsets.only(top: 05),
-                child: RoundedBox(
-                  name: _hospitalsilt[index].hospitalname,
-                  location: _hospitalsilt[index].hostpitallocation,
-                  picture: _hospitalsilt[index].picture,
-                  icon: _hospitalsilt[index].icon,
+                child: InkWell(
+                  onTap: () {
+                    _showPopup(context, _hospitalsilt[index].hospitalname,
+                        _hospitalsilt[index].hostpitallocation);
+                  },
+                  child: RoundedBox(
+                    name: _hospitalsilt[index].hospitalname,
+                    location: _hospitalsilt[index].hostpitallocation,
+                    picture: _hospitalsilt[index].picture,
+                    icon: _hospitalsilt[index].icon,
+                  ),
                 ),
               );
             }),
       ),
     );
   }
+}
+
+Future<bool> _showPopup(BuildContext context, title, subtitle) {
+  return showDialog(
+      context: context,
+      builder: (context) => SimpleDialog(
+            contentPadding: EdgeInsets.only(left: 20),
+            title: Text(
+              title,
+              style: TextStyle(fontSize: 22),
+              overflow: TextOverflow.fade,
+            ),
+            children: <Widget>[
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: <Widget>[
+                  Icon(Icons.location_on),
+                  Text(
+                    subtitle,
+                    style: TextStyle(fontSize: 17),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 20,
+              ),
+            ],
+          ));
 }
 
 class HospitalModel {
