@@ -23,7 +23,7 @@ class RoundedBox extends StatelessWidget {
                 Radius.circular(20),
               ),
               gradient: LinearGradient(
-                colors: [Colors.orange, Colors.red],
+                colors: [Colors.greenAccent, Colors.lightGreenAccent],
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
               ),
@@ -37,10 +37,12 @@ class RoundedBox extends StatelessWidget {
           child: Stack(
             children: <Widget>[
               Opacity(
-                opacity: 0.75,
+                opacity: 0.6,
                 child: Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(20),
+                    ),
                     image: DecorationImage(
                         image: NetworkImage(picture), fit: BoxFit.cover),
                   ),
@@ -70,78 +72,12 @@ class RoundedBox extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            Container(
-                              margin: EdgeInsets.only(top: 15),
-                              child: Icon(Icons.local_hospital,
-                                  size: 25, color: Colors.white),
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(left: 03, top: 15),
-                              child: Center(
-                                child: Text(
-                                  name,
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: <Widget>[
-                            Container(
-                              margin: EdgeInsets.only(top: 05),
-                              child: Icon(
-                                Icons.location_on,
-                                size: 25,
-                                color: Colors.white,
-                              ),
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(left: 03, top: 05),
-                              child: Center(
-                                child: Text(
-                                  location,
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                        _buildNameLabel(),
+                        _buildLocationLabel(),
                         SizedBox(
                           height: 05,
                         ),
-                        Container(
-                            padding: EdgeInsets.only(left: 155, bottom: 0),
-                            child: Row(
-                              children: <Widget>[
-                                _buildButton(
-                                  onPressed: () {
-                                    print('pressed location button');
-                                  },
-                                  icons: Icons.place,
-                                  colors: Colors.blue,
-                                ),
-                                SizedBox(
-                                  width: 05,
-                                ),
-                                _buildButton(
-                                  onPressed: () {
-                                    print('pressed navigation button');
-                                  },
-                                  icons: Icons.navigation,
-                                  colors: Colors.blue,
-                                ),
-                              ],
-                            ))
+                        buildPairNavLocButton()
                       ],
                     ),
                   ),
@@ -150,6 +86,83 @@ class RoundedBox extends StatelessWidget {
             ],
           ),
         ));
+  }
+
+  Container buildPairNavLocButton() {
+    return Container(
+                          padding: EdgeInsets.only(left: 155, bottom: 0),
+                          child: Row(
+                            children: <Widget>[
+                              _buildButton(
+                                onPressed: () {
+                                  print('pressed location button');
+                                },
+                                icons: Icons.place,
+                                colors: Colors.blue,
+                              ),
+                              SizedBox(
+                                width: 05,
+                              ),
+                              _buildButton(
+                                onPressed: () {
+                                  print('pressed navigation button');
+                                },
+                                icons: Icons.navigation,
+                                colors: Colors.blue,
+                              ),
+                            ],
+                          ));
+  }
+
+  Row _buildLocationLabel() {
+    return Row(
+      children: <Widget>[
+        Container(
+          margin: EdgeInsets.only(top: 05),
+          child: Icon(
+            Icons.location_on,
+            size: 25,
+            color: Colors.white,
+          ),
+        ),
+        Container(
+          margin: EdgeInsets.only(left: 03, top: 05),
+          child: Center(
+            child: Text(
+              location,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 16,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Row _buildNameLabel() {
+    return Row(
+      children: <Widget>[
+        Container(
+          margin: EdgeInsets.only(top: 15),
+          child: Icon(Icons.local_hospital, size: 25, color: Colors.white),
+        ),
+        Container(
+          margin: EdgeInsets.only(left: 03, top: 15),
+          child: Center(
+            child: Text(
+              name,
+              style: TextStyle(
+                color: Colors.indigo,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }
 
