@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/Hospital/hospitalRoundbox.dart';
-import '../../widgets/Hospital/SimpleCustomPopUp.dart';
 
 class Hospitals extends StatelessWidget {
   static const routeName = '/hospitals';

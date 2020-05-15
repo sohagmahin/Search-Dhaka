@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../pages/localbus/conscious_info_page.dart';
-import '../../pages/tourist/places.dart';
 
 class HomePageDrawer extends StatelessWidget {
   @override
@@ -13,7 +11,7 @@ class HomePageDrawer extends StatelessWidget {
           child: Column(
             children: <Widget>[
               AppBar(
-                title: Text('Local Bus Sheba'),
+                title: Text('Search Dhaka'),
                 automaticallyImplyLeading: false,
                 centerTitle: true,
               ),
@@ -88,17 +86,24 @@ class HomePageDrawer extends StatelessWidget {
   _buildAlertDialog(BuildContext context) {
     return showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        title: Text('About'),
-        content:
-            Text('Build by Flutter!\nCreated by SOHAG\nCredit: Hasan, Soyab'),
-        actions: <Widget>[
-          FlatButton(
-            child: Text('OK'),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          )
+      builder: (context) => AboutDialog(
+        applicationVersion: 'version 1.0.0',
+        applicationName: 'Search Dhaka',
+        children: <Widget>[
+          Text('All Solution in one place.'),
+          SizedBox(
+            height: 10,
+          ),
+          Text('Build by Flutter.'),
+          SizedBox(
+            height: 10,
+          ),
+          Text(
+            '----Developer info----\n',
+            textAlign: TextAlign.center,
+          ),
+          Text('Project Supervisor: Habibullah Bilali sir\n'
+              'Created by Sohag & hasan\nContent Management:Shoiab,Razib ahmed & Rashedul Islam'),
         ],
       ),
     );
