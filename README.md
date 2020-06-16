@@ -1,16 +1,15 @@
-# local_bus_dhaka_route
+# Search Dhaka
 
-A new Flutter application for findout the local bus in dhaka city
+A new Flutter application for findout the local bus,touriest and so on in dhaka city.
 
-## Getting Started
+## Features
+1. Local Bus --completed
+2. Touriest Spots --completed
+3. Train Stations --incomplete
+4. Hospital -- 80% complete
+5. Universites --80% complete
+6. Shopping Mall --completed
+7. Emergency Contacts --completed
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
