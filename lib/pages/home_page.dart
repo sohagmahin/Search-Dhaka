@@ -15,6 +15,8 @@ import 'hospital/hospitallist.dart';
 
 class HomePage extends StatelessWidget {
   static const routeName = '/';
+  final String appTitle;
+  HomePage({this.appTitle});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class HomePage extends StatelessWidget {
       onWillPop: ()=>exitDialog(context),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Search Dhaka'),
+          title: Text(appTitle),
           centerTitle: true,
         ),
         drawer: HomePageDrawer(),

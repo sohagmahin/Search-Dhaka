@@ -11,7 +11,6 @@ import 'pages/tourist/places.dart';
 import 'pages/tourist/place_details.dart';
 import 'pages/home_page.dart';
 import 'pages/university/universities.dart';
-
 import 'pages/shopping_mall/shopping_malls.dart';
 import 'pages/train/TrainStation.dart';
 import 'pages/hotline/hotline_numbers.dart';
@@ -38,7 +37,7 @@ class LocalBus extends StatelessWidget {
             primarySwatch: Colors.indigo, fontFamily: 'ZCOOLQingKeHuangYou'),
         initialRoute: HomePage.routeName,
         routes: {
-          HomePage.routeName: (context) => HomePage(),
+          HomePage.routeName: (context) => HomePage(appTitle: 'Hello Rajdhani',),
           LocalBusMain.routeName: (context) =>
               LocalBusMain(title: 'Local Bus(Dhaka route)'),
           BusDetails.routeName: (context) => BusDetails(),

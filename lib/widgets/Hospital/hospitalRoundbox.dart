@@ -12,12 +12,14 @@ class RoundedBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double _originalHeight = MediaQuery.of(context).size.height;
+    double _originalWidth = MediaQuery.of(context).size.width;
     return Material(
-        borderRadius: BorderRadius.circular(40),
+        borderRadius: BorderRadius.circular(40), //40%
         color: Colors.white60,
         child: Container(
           margin: EdgeInsets.all(10),
-          height: 120,
+          height: _originalHeight * 0.18, //120
           decoration: BoxDecoration(
               borderRadius: BorderRadius.all(
                 Radius.circular(20),
@@ -77,7 +79,7 @@ class RoundedBox extends StatelessWidget {
                         SizedBox(
                           height: 05,
                         ),
-                        buildPairNavLocButton()
+                        buildPairNavLocButton(_originalHeight)
                       ],
                     ),
                   ),
@@ -88,30 +90,31 @@ class RoundedBox extends StatelessWidget {
         ));
   }
 
-  Container buildPairNavLocButton() {
+  Container buildPairNavLocButton(double originalHeight) {
     return Container(
-                          padding: EdgeInsets.only(left: 155, bottom: 0),
-                          child: Row(
-                            children: <Widget>[
-                              _buildButton(
-                                onPressed: () {
-                                  print('pressed location button');
-                                },
-                                icons: Icons.place,
-                                colors: Colors.blue,
-                              ),
-                              SizedBox(
-                                width: 05,
-                              ),
-                              _buildButton(
-                                onPressed: () {
-                                  print('pressed navigation button');
-                                },
-                                icons: Icons.navigation,
-                                colors: Colors.blue,
-                              ),
-                            ],
-                          ));
+        padding: EdgeInsets.only(left: originalHeight * 0.20, bottom: 0),
+        //left 155
+        child: Row(
+          children: <Widget>[
+            _buildButton(
+              onPressed: () {
+                print('pressed location button');
+              },
+              icons: Icons.place,
+              colors: Colors.blue,
+            ),
+            SizedBox(
+              width: 05,
+            ),
+            _buildButton(
+              onPressed: () {
+                print('pressed navigation button');
+              },
+              icons: Icons.navigation,
+              colors: Colors.blue,
+            ),
+          ],
+        ));
   }
 
   Row _buildLocationLabel() {
