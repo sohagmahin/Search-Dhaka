@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
@@ -21,7 +22,8 @@ class TrainStation extends StatelessWidget {
         placeName: 'Airport railway station',
         addressName: 'Bir Uttam Ziaur Rahman Rd, Dhaka 1215',
         location: '23.851818,90.408150',
-        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/3/3d/Dhaka_Airport_Railway_Station_%2802%29.jpg'),
+        imageUrl:
+            'https://upload.wikimedia.org/wikipedia/commons/3/3d/Dhaka_Airport_Railway_Station_%2802%29.jpg'),
   ];
 
   @override
@@ -36,6 +38,7 @@ class TrainStation extends StatelessWidget {
           itemCount: trains.length,
           itemBuilder: (context, index) {
             return buildTrainWidget(
+              context: context,
               placeName: trains[index].placeName,
               address: trains[index].addressName,
               location: trains[index].location,
@@ -51,35 +54,148 @@ class TrainStation extends StatelessWidget {
   }
 
   Widget buildTrainWidget({
+    BuildContext context,
     String placeName,
     String address,
     String location,
     String imgURL,
     Function callBack,
   }) {
-    return Card(
-      child: ListTile(
-        title: Text(placeName),
-        subtitle: Text(address),
-        leading: CachedNetworkImage(
-          key: Key(location),
-          imageUrl: imgURL,
-          fit: BoxFit.cover,
-          placeholder: (context, url) => CircularProgressIndicator(),
-          errorWidget: (context, url, error) => Icon(Icons.error),
-        ),
-        trailing: IconButton(
-          icon: Icon(
-            Icons.navigation,
-            color: Colors.indigoAccent,
+    return InkWell(
+      onTap: () {
+        customAlertDialog(context, placeName, imgURL, address);
+//      _showPopup(context, placeName, address, imgURL);
+      },
+      child: Card(
+        child: ListTile(
+          title: Text(placeName),
+          subtitle: Text(address),
+          leading: Hero(
+            tag: placeName,
+            child: CachedNetworkImage(
+              key: Key(location),
+              imageUrl: imgURL,
+              fit: BoxFit.cover,
+              placeholder: (context, url) => CircularProgressIndicator(),
+              errorWidget: (context, url, error) => Icon(Icons.error),
+            ),
           ),
-          tooltip: 'Navigation button',
-          onPressed: () {
-            callBack();
-          },
+          trailing: IconButton(
+            icon: Icon(
+              Icons.navigation,
+              color: Colors.indigoAccent,
+            ),
+            tooltip: 'Navigation button',
+            onPressed: () {
+              callBack();
+            },
+          ),
         ),
       ),
     );
+  }
+
+  void customAlertDialog(BuildContext context, String placeName, String imgURL, String address) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            fullscreenDialog: true,
+            builder: (BuildContext context) {
+              return Scaffold(
+                body: SimpleDialog(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  title: Text(placeName),
+                  children: <Widget>[
+                    Hero(
+                      tag: placeName,
+                      child: CachedNetworkImage(
+                        imageUrl: imgURL,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(Icons.location_on),
+                        Text(
+                          address,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
+                    ButtonBar(
+                      children: <Widget>[
+                        MaterialButton(
+                          child: Icon(
+                            Icons.location_on,
+                            size: 20,
+                          ),
+                          shape: CircleBorder(),
+                          color: Theme.of(context).accentColor,
+                          onPressed: () {},
+                        ),
+                        RaisedButton(
+                          child: Text(
+                            'OK',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context).accentColor),
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              );
+            }));
+  }
+
+  Future<bool> _showPopup(BuildContext context, title, subtitle, url) {
+    return showDialog(
+        context: context,
+        builder: (context) => SimpleDialog(
+              contentPadding: EdgeInsets.all(10),
+              title: Text(
+                title,
+                style: TextStyle(fontSize: 22),
+                overflow: TextOverflow.fade,
+              ),
+              children: <Widget>[
+                SizedBox(
+                  height: 20,
+                ),
+                Card(
+                  elevation: 5,
+                  child: CachedNetworkImage(
+                    imageUrl: url,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  children: <Widget>[
+                    Icon(Icons.location_on),
+                    Text(
+                      subtitle,
+                      style: TextStyle(fontSize: 17),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+              ],
+            ));
   }
 
   void _urlLauncher({String destination}) async {
