@@ -157,47 +157,6 @@ class TrainStation extends StatelessWidget {
             }));
   }
 
-  Future<bool> _showPopup(BuildContext context, title, subtitle, url) {
-    return showDialog(
-        context: context,
-        builder: (context) => SimpleDialog(
-              contentPadding: EdgeInsets.all(10),
-              title: Text(
-                title,
-                style: TextStyle(fontSize: 22),
-                overflow: TextOverflow.fade,
-              ),
-              children: <Widget>[
-                SizedBox(
-                  height: 20,
-                ),
-                Card(
-                  elevation: 5,
-                  child: CachedNetworkImage(
-                    imageUrl: url,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  children: <Widget>[
-                    Icon(Icons.location_on),
-                    Text(
-                      subtitle,
-                      style: TextStyle(fontSize: 17),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-              ],
-            ));
-  }
-
   void _urlLauncher({String destination}) async {
     String url = "https://www.google.com/maps/dir/?api=1" +
         "&destination=" +
