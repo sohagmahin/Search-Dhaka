@@ -1,3 +1,4 @@
+import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -44,7 +45,7 @@ class TrainStation extends StatelessWidget {
               location: trains[index].location,
               imgURL: trains[index].imageUrl,
               callBack: () {
-                _urlLauncher(destination: trains[index].location);
+                _urlLauncherNavMap(destination: trains[index].location);
               },
             );
           },
@@ -63,8 +64,7 @@ class TrainStation extends StatelessWidget {
   }) {
     return InkWell(
       onTap: () {
-        customAlertDialog(context, placeName, imgURL, address);
-//      _showPopup(context, placeName, address, imgURL);
+        customAlertDialog(context, placeName, imgURL, address, location);
       },
       child: Card(
         child: ListTile(
@@ -72,100 +72,120 @@ class TrainStation extends StatelessWidget {
           subtitle: Text(address),
           leading: Hero(
             tag: placeName,
-            child: CachedNetworkImage(
-              key: Key(location),
-              imageUrl: imgURL,
-              fit: BoxFit.cover,
-              placeholder: (context, url) => CircularProgressIndicator(),
-              errorWidget: (context, url, error) => Icon(Icons.error),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(5.0),
+              child: CachedNetworkImage(
+                key: Key(location),
+                imageUrl: imgURL,
+                fit: BoxFit.cover,
+                placeholder: (context, url) => CircularProgressIndicator(),
+                errorWidget: (context, url, error) => Icon(Icons.error),
+              ),
             ),
           ),
           trailing: IconButton(
-            icon: Icon(
-              Icons.navigation,
-              color: Colors.indigoAccent,
-            ),
-            tooltip: 'Navigation button',
-            onPressed: () {
-              callBack();
-            },
-          ),
+              icon: Icon(
+                Icons.navigation,
+                color: Colors.indigoAccent,
+              ),
+              tooltip: 'Navigation button',
+              onPressed: callBack),
         ),
       ),
     );
   }
 
-  void customAlertDialog(BuildContext context, String placeName, String imgURL, String address) {
+  void customAlertDialog(BuildContext context, String placeName, String imgURL,
+      String address, String placeLatLon) {
     Navigator.push(
-        context,
-        MaterialPageRoute(
-            fullscreenDialog: true,
-            builder: (BuildContext context) {
-              return Scaffold(
-                body: SimpleDialog(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  title: Text(placeName),
+      context,
+      MaterialPageRoute(
+        fullscreenDialog: true,
+        builder: (BuildContext context) {
+          return Scaffold(
+            body: SimpleDialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
+              title: Text(placeName),
+              children: <Widget>[
+                Hero(
+                  tag: placeName,
+                  child: CachedNetworkImage(
+                    imageUrl: imgURL,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Hero(
-                      tag: placeName,
-                      child: CachedNetworkImage(
-                        imageUrl: imgURL,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Icon(Icons.location_on),
-                        Text(
-                          address,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
-                    ),
-                    ButtonBar(
-                      children: <Widget>[
-                        MaterialButton(
-                          child: Icon(
-                            Icons.location_on,
-                            size: 20,
-                          ),
-                          shape: CircleBorder(),
-                          color: Theme.of(context).accentColor,
-                          onPressed: () {},
-                        ),
-                        RaisedButton(
-                          child: Text(
-                            'OK',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context).accentColor),
-                          ),
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                        )
-                      ],
+                    Icon(Icons.location_on),
+                    Text(
+                      address,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ],
                 ),
-              );
-            }));
+                ButtonBar(
+                  children: <Widget>[
+                    MaterialButton(
+                      child: Icon(
+                        Icons.location_on,
+                        size: 20,
+                      ),
+                      shape: CircleBorder(),
+                      color: Theme.of(context).accentColor,
+                      onPressed: () {
+                        _urlLauncherStaticMap(query: placeName);
+                      },
+                    ),
+                    RaisedButton(
+                      child: Text(
+                        'OK',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).accentColor),
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    )
+                  ],
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
   }
 
-  void _urlLauncher({String destination}) async {
-    String url = "https://www.google.com/maps/dir/?api=1" +
+  void _urlLauncherNavMap({String destination}) async {
+    String navMapURL = "https://www.google.com/maps/dir/?api=1" +
         "&destination=" +
         destination +
         "&travelmode=driving&dir_action=navigate";
-    if (await canLaunch(url)) {
-      await launch(url);
+    if (await canLaunch(navMapURL)) {
+      await launch(navMapURL);
     } else {
-      throw 'Could not launch $url';
+      throw 'Could not launch $navMapURL';
+    }
+  }
+
+  void _urlLauncherStaticMap({String query}) async {
+    String staticMapURL =
+        "https://www.google.com/maps/search/?api=1&query=" + query;
+    if(Platform.isIOS){
+      print('Under the construction');
+      return;
+    }
+
+   if (await canLaunch(staticMapURL)) {
+      await launch(staticMapURL);
+    } else {
+      throw 'Could not launch $staticMapURL';
     }
   }
 }
