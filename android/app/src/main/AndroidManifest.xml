@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="local_bus_dhaka_route"
+        android:label="Search Dhaka"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
