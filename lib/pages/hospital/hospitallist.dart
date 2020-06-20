@@ -51,7 +51,7 @@ class Hospitals extends StatelessWidget {
       hospitalname: "SQUARE HOSPITALS LTD.",
       hostpitallocation: "West Panthapath,Dhaka 1205 ",
       picture:
-          "https://www.keechao.com/sites/default/files/hospital_images/SquareHospital.png",
+          "https://uralems.com/wp-content/uploads/2018/05/square-1.png",
       icon:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR8tPxzlX5zVde469zbCGLEC8ZgMewh_Zi6mojPkL8xbwQd_X2_',
     ),
@@ -116,8 +116,8 @@ class Hospitals extends StatelessWidget {
                   child: RoundedBox(
                     name: _hospitalsilt[index].hospitalname,
                     location: _hospitalsilt[index].hostpitallocation,
-                    picture: _hospitalsilt[index].picture,
-                    icon: _hospitalsilt[index].icon,
+                    imageURL: _hospitalsilt[index].picture,
+                    iconURL: _hospitalsilt[index].icon,
                   ),
                 ),
               );
