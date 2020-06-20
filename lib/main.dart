@@ -37,7 +37,9 @@ class LocalBus extends StatelessWidget {
             primarySwatch: Colors.indigo, fontFamily: 'ZCOOLQingKeHuangYou'),
         initialRoute: HomePage.routeName,
         routes: {
-          HomePage.routeName: (context) => HomePage(appTitle: 'Search Dhaka',),
+          HomePage.routeName: (context) => HomePage(
+                appTitle: 'Search Dhaka',
+              ),
           LocalBusMain.routeName: (context) =>
               LocalBusMain(title: 'Local Bus(Dhaka route)'),
           BusDetails.routeName: (context) => BusDetails(),

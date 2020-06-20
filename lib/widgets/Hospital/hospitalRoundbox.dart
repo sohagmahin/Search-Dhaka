@@ -95,8 +95,21 @@ class RoundedBox extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
-                        _buildNameLabel(),
-                        _buildLocationLabel(),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: _buildNameLabel(
+                              text: name,
+                              textColor: Colors.indigo,
+                              iconData: Icons.local_hospital,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18),
+                        ),
+                        _buildNameLabel(
+                            text: location,
+                            textColor: Colors.black,
+                            iconData: Icons.location_on,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16),
                         SizedBox(
                           height: 05,
                         ),
@@ -138,51 +151,26 @@ class RoundedBox extends StatelessWidget {
         ));
   }
 
-  Row _buildLocationLabel() {
+  Widget _buildNameLabel(
+      {String text,
+      IconData iconData,
+      Color textColor,
+      FontWeight fontWeight,
+      double fontSize}) {
     return Row(
       children: <Widget>[
         Container(
-          margin: EdgeInsets.only(top: 05),
-          child: Icon(
-            Icons.location_on,
-            size: 25,
-            color: Colors.white,
-          ),
+          child: Icon(iconData, size: 25, color: Colors.white),
         ),
         Container(
-          margin: EdgeInsets.only(left: 03, top: 05),
-          child: Center(
-            child: Text(
-              location,
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-              ),
+          child: Text(
+            text,
+            style: TextStyle(
+              color: textColor,
+              fontSize: fontSize,
+              fontWeight: fontWeight,
             ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Row _buildNameLabel() {
-    return Row(
-      children: <Widget>[
-        Container(
-          margin: EdgeInsets.only(top: 15),
-          child: Icon(Icons.local_hospital, size: 25, color: Colors.white),
-        ),
-        Container(
-          margin: EdgeInsets.only(left: 03, top: 15),
-          child: Center(
-            child: Text(
-              name,
-              style: TextStyle(
-                color: Colors.indigo,
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+            overflow: TextOverflow.fade,
           ),
         ),
       ],
