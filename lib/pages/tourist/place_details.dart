@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -38,7 +39,7 @@ class _PlaceDetailsState extends State<PlaceDetails> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Lalbag Fort'),
+        title: Text(place.name),
         centerTitle: true,
       ),
       body: Container(
@@ -191,7 +192,8 @@ class _PlaceDetailsState extends State<PlaceDetails> {
           child: ClipRRect(
             borderRadius: BorderRadius.all(Radius.circular(5.0)),
             child: Stack(children: <Widget>[
-              Image.network(i, fit: BoxFit.cover, width: 1000.0),
+//              Image.network(i, fit: BoxFit.cover, width: 1000.0),
+            CachedNetworkImage(imageUrl: i,fit: BoxFit.cover,width: 1000.0,),
             ]),
           ),
         );
@@ -237,17 +239,9 @@ class _PlaceDetailsState extends State<PlaceDetails> {
 
   BoxDecoration _buildBackgroundDecoration(String imgUrl) {
     return BoxDecoration(
-      // backgroundBlendMode: BlendMode.dstATop,
-      //color: Colors.deepOrange,
-
-//      gradient: LinearGradient(
-//          colors: [Colors.deepOrange, Colors.yellowAccent],
-//          begin: Alignment.topLeft,
-//          end: Alignment.bottomRight,
-//          stops: [0.5, 1]),
       color: Colors.black,
       image: DecorationImage(
-          image: NetworkImage(imgUrl),
+          image: CachedNetworkImageProvider(imgUrl),
           fit: BoxFit.cover,
           colorFilter: ColorFilter.mode(Colors.black54, BlendMode.dstATop)),
     );
