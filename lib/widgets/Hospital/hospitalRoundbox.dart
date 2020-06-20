@@ -8,6 +8,7 @@ class RoundedBox extends StatelessWidget {
   final location;
   final imageURL;
   final iconURL;
+  double radius = 20;
 
   RoundedBox({this.name, this.location, this.imageURL, this.iconURL});
 
@@ -15,6 +16,11 @@ class RoundedBox extends StatelessWidget {
   Widget build(BuildContext context) {
     double _originalHeight = MediaQuery.of(context).size.height;
     double _originalWidth = MediaQuery.of(context).size.width;
+    print('height: $_originalHeight');
+    print('width: $_originalWidth');
+    if (_originalHeight > 700) {
+      radius = 25;
+    }
     return Material(
         borderRadius: BorderRadius.circular(40), //40%
         color: Colors.white60,
@@ -96,24 +102,25 @@ class RoundedBox extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: _buildNameLabel(
+                          padding:
+                              EdgeInsets.only(top: _originalHeight * 0.035),
+                          child: _buildLabel(
                               text: name,
                               textColor: Colors.indigo,
                               iconData: Icons.local_hospital,
                               fontWeight: FontWeight.bold,
                               fontSize: 18),
                         ),
-                        _buildNameLabel(
+                        _buildLabel(
                             text: location,
                             textColor: Colors.black,
                             iconData: Icons.location_on,
                             fontWeight: FontWeight.bold,
-                            fontSize: 16),
+                            fontSize: 15),
                         SizedBox(
                           height: 05,
                         ),
-                        buildPairNavLocButton(_originalHeight)
+                        buildPairNavLocButton(originalWidth: _originalWidth)
                       ],
                     ),
                   ),
@@ -124,9 +131,9 @@ class RoundedBox extends StatelessWidget {
         ));
   }
 
-  Container buildPairNavLocButton(double originalHeight) {
+  Container buildPairNavLocButton({double originalWidth, double uRadius}) {
     return Container(
-        padding: EdgeInsets.only(left: originalHeight * 0.20, bottom: 0),
+        padding: EdgeInsets.only(left: originalWidth * 0.35, bottom: 0),
         //left 155
         child: Row(
           children: <Widget>[
@@ -146,12 +153,13 @@ class RoundedBox extends StatelessWidget {
               },
               icons: Icons.navigation,
               colors: Colors.blue,
+              radius: uRadius,
             ),
           ],
         ));
   }
 
-  Widget _buildNameLabel(
+  Widget _buildLabel(
       {String text,
       IconData iconData,
       Color textColor,
@@ -182,8 +190,9 @@ class _buildButton extends StatelessWidget {
   final IconData icons;
   final Color colors;
   final Function onPressed;
+  final double radius;
 
-  _buildButton({this.icons, this.colors, this.onPressed});
+  _buildButton({this.icons, this.colors, this.onPressed, this.radius});
 
   @override
   Widget build(BuildContext context) {
@@ -193,7 +202,7 @@ class _buildButton extends StatelessWidget {
         child: CircleAvatar(
           backgroundColor: Colors.white,
           child: Icon(icons),
-          radius: 20,
+          radius: radius,
         ),
       ),
     );
