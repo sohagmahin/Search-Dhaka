@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class RoundedBox extends StatelessWidget {
 //  static const routeName = '/hospital/hospitalsPage';
 
   final name;
   final location;
-  final picture;
-  final icon;
+  final imageURL;
+  final iconURL;
 
-  RoundedBox({this.name, this.location, this.picture, this.icon});
+  RoundedBox({this.name, this.location, this.imageURL, this.iconURL});
 
   @override
   Widget build(BuildContext context) {
@@ -40,32 +41,52 @@ class RoundedBox extends StatelessWidget {
             children: <Widget>[
               Opacity(
                 opacity: 0.6,
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(20),
+                child: CachedNetworkImage(
+                  imageUrl: imageURL,
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                  imageBuilder: (context, imageProvider) => Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(20),
+                      ),
+                      image: DecorationImage(
+                        image: imageProvider,
+                        fit: BoxFit.cover,
+                      ),
                     ),
-                    image: DecorationImage(
-                        image: NetworkImage(picture), fit: BoxFit.cover),
                   ),
                 ),
               ),
               Row(
                 children: <Widget>[
-                  Container(
-                    margin: EdgeInsets.all(08),
-                    child: CircleAvatar(
-                      child: Container(
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                              image: NetworkImage(icon),
-                              fit: BoxFit.cover,
-                            )),
-                      ),
-                      radius: 40,
-                    ),
-                  ),
+                  CachedNetworkImage(
+                      imageUrl: iconURL,
+                      placeholder: (context, url) =>
+                          CircularProgressIndicator(),
+                      errorWidget: (context, url, error) => Center(
+                            child: Icon(Icons.error),
+                          ),
+                      imageBuilder: (context, iconProvider) {
+                        return Container(
+                          margin: EdgeInsets.all(8.0),
+                          height: _originalWidth * 0.20,
+                          width: _originalWidth * 0.20,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.green,
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black45,
+                                    blurRadius: 3,
+                                    spreadRadius: 3,
+                                    offset: Offset.zero)
+                              ],
+                              image: DecorationImage(
+                                image: iconProvider,
+                                fit: BoxFit.cover,
+                              )),
+                        );
+                      }),
                   SizedBox(
                     width: 10,
                   ),

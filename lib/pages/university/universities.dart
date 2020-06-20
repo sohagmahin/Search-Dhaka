@@ -48,8 +48,8 @@ class Universities extends StatelessWidget {
                   child: RoundedBox(
                     name: _universities[index].name,
                     location: _universities[index].location,
-                    picture: _universities[index].picture,
-                    icon: _universities[index].icon,
+                    imageURL: _universities[index].picture,
+                    iconURL: _universities[index].icon,
                   ),
                 ),
               );
