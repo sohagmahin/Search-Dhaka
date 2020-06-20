@@ -75,40 +75,39 @@ class RoundedBox extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Center(
-                  child: Text(
-                    title,
-                    style: TextStyle(
-                      fontSize: 30.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 30.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
                   ),
+                  overflow: TextOverflow.fade,
+                  softWrap: false,
                 ),
                 SizedBox(
                   height: 5.0,
                 ),
-                Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Icon(
-                        Icons.location_on,
-                        size: 20,
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text(
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Icon(
+                      Icons.location_on,
+                      size: 20,
+                    ),
+                    Flexible(
+                      child: Text(
                         location,
                         style: TextStyle(
                           fontSize: 15.0,
                           fontWeight: FontWeight.bold,
                           color: Colors.black54,
                         ),
-                      )
-                    ],
-                  ),
+                        overflow: TextOverflow.fade,
+                        softWrap: false,
+                      ),
+                    )
+                  ],
                 ),
               ],
             ),
