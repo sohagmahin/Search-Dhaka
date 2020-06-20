@@ -99,7 +99,7 @@ class Hospitals extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Hospitla List'),
+        title: Text('Hospital List'),
       ),
       body: Container(
         margin: EdgeInsets.all(10),
