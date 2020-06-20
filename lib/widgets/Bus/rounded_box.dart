@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../pages/tourist/place_details.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 const fixedGradient = LinearGradient(
   colors: [Colors.orange, Colors.yellowAccent],
@@ -56,16 +57,19 @@ class RoundedBox extends StatelessWidget {
           children: <Widget>[
             Opacity(
               opacity: 0.4,
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30.0),
-                  image: DecorationImage(
-                    image: NetworkImage(
-                      imageUrl,
+              child: CachedNetworkImage(
+                imageUrl: imageUrl,
+                imageBuilder: (context, imageProvider) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30.0),
+                      image: DecorationImage(
+                        image: imageProvider,
+                        fit: BoxFit.cover,
+                      ),
                     ),
-                    fit: BoxFit.cover,
-                  ),
-                ),
+                  );
+                },
               ),
             ),
             Column(
