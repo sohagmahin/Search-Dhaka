@@ -69,7 +69,7 @@ class ShoppingMalls extends StatelessWidget {
       description: '',
     ),
     Place(
-      name: 'Eastern plaza shopping complex',
+      name: 'Eastern plaza',
       address: 'Sonargaon Road, Dhaka 1205',
       featureImageUrl: 'https://i.ytimg.com/vi/I44TVJRRJ_M/maxresdefault.jpg',
       location: Location(
