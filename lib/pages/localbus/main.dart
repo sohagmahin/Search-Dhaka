@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:local_bus_dhaka_route/pages/localbus/conscious_info_page.dart';
 import 'input_page.dart';
 import 'all_bus_list.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 const kButtomTextStyle = TextStyle(fontWeight: FontWeight.bold);
 
@@ -40,11 +41,16 @@ class _LocalBusMainState extends State<LocalBusMain> {
       icon: Icon(Icons.more_vert),
       onSelected: (status) {
         if (status == FilterStatus.findNearestStop) {
-          showDialog(
-              context: context,
-              builder: (ctx) => AlertDialog(
-                    content: Text('This feature will coming soon!'),
-                  ));
+          String url = 'https://www.google.com/maps/search/nearest+bus+stop/';
+          _launchInBrowser(url);
+
+//          showDialog(
+//            context: context,
+//            builder: (ctx) =>
+//                AlertDialog(
+//              content: Text('This feature will coming soon!'),
+//            ),
+//          );
         }
         if (status == FilterStatus.consciousPage) {
           Navigator.of(context).pushNamed(ConsciousInfoPage.routeName);
@@ -63,6 +69,20 @@ class _LocalBusMainState extends State<LocalBusMain> {
         ];
       },
     );
+  }
+
+  Future<void> _launchInBrowser(String url) async {
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+        forceSafariVC: false,
+        forceWebView: false,
+      //  enableJavaScript: false,
+        headers: <String, String>{'my_header_key': 'my_header_value'},
+      );
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 
   BottomNavigationBar _buildBottomNavigationBar() {
