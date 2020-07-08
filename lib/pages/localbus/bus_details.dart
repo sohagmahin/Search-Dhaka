@@ -130,7 +130,7 @@ class BusDetails extends StatelessWidget {
               padding: const EdgeInsets.only(left: 10.0, right: 10.0),
               child: FlatButton(
                   color: Colors.lightGreen,
-                  child: Text('View On Map'),
+                  child: Text('Road Map'),
                   onPressed: () {
                     _launchURL(url, context);
                   }),
