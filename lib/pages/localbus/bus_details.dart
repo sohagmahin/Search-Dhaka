@@ -73,8 +73,8 @@ class BusDetails extends StatelessWidget {
       showDialog(
           context: context,
           builder: (context) => AlertDialog(
-                title: Text('Pleace install Google Maps'),
-                content: Text('Install Google Maps Or Chrome Brower!'),
+                title: Text('Google Maps Not found!'),
+                content: Text('Install Google Maps Or Chrome Browser!'),
               ));
       throw 'Could not launch $url';
     }
