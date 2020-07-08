@@ -18,95 +18,6 @@ class BusListProvider extends ChangeNotifier {
   bool _hasInternet = true;
   List<Bus> _busList = [];
 
-  List<Bus> dummyData = [
-    Bus(
-      id: '01',
-      name: '7 No Bus',
-      type: 'Local',
-      stopageList: [
-        'Gabtoli',
-        'Technical',
-        'Kallyanpur',
-        'Shamoli',
-        'CollageGate',
-        'Farmget',
-        'Jatrabari'
-      ],
-      sourceName: 'Gabtoli',
-      destinationName: 'Jatrabari',
-      sourceLocation: Location(
-          placeName: 'Gabtoli', latitude: 23.7828969, longitude: 90.3427352),
-      destinationLocation: Location(
-          placeName: 'Jatrabari', latitude: 23.7097517, longitude: 90.4344978),
-    ),
-    Bus(
-      id: '02',
-      name: 'Thekana',
-      type: 'Siting',
-      stopageList: [
-        'Dhamrai',
-        'Savar',
-        'Gabtoli',
-        'Technical',
-        'Kallyanpur',
-        'Shamoli',
-        'CollageGate',
-        'Jatrabari'
-      ],
-      sourceName: 'Dhamrai',
-      destinationName: 'Jatrabari',
-      sourceLocation: Location(
-          placeName: 'Dhamrai', latitude: 23.9162572, longitude: 90.2096656),
-      destinationLocation: Location(
-          placeName: 'Jatrabari', latitude: 23.7097517, longitude: 90.4344978),
-    ),
-    Bus(
-      id: '03',
-      name: 'Bahon',
-      type: 'Siting',
-      stopageList: [
-        'Mirpur 1',
-        'Technical',
-        'Kallyanpur',
-        'Shamoli',
-        'CollageGate',
-        'Dhanmondi 27',
-        'Dhanmoni 32',
-        'Shabag',
-        'Sadarghat'
-      ],
-      sourceName: 'Mirpur 1',
-      destinationName: 'Sadarghat',
-      sourceLocation: Location(
-          placeName: 'Mirpur 1', latitude: 23.7963066, longitude: 90.3510103),
-      destinationLocation: Location(
-          placeName: 'Sadarghat', latitude: 23.7093772, longitude: 90.4095903),
-    ),
-    Bus(
-      id: '04',
-      name: 'Projapoti',
-      type: 'Siting',
-      stopageList: [
-        'Mohammadpur',
-        'Shamoli',
-        'Agergou',
-        'Mirpur 10',
-        'Uttara',
-        'Abdullahpur'
-      ],
-      sourceName: 'Mohammadpur',
-      destinationName: 'Abdullahpur',
-      sourceLocation: Location(
-          placeName: 'Mohammadpur',
-          latitude: 23.6820265,
-          longitude: 89.1747168),
-      destinationLocation: Location(
-          placeName: 'Abdullahpur',
-          latitude: 23.8698014,
-          longitude: 90.3965403),
-    ),
-  ];
-
   List<Bus> _selectedBusList = [];
 
   bool get result{
@@ -189,7 +100,7 @@ class BusListProvider extends ChangeNotifier {
     //fetch data from firebase then insert into list;
     _isLoading = true;
     notifyListeners();
-    String url = 'https://local-bus-8c5eb.firebaseio.com/buslist.json';
+    String url = 'https://search-dhaka.firebaseio.com/buslist.json';
     http.Response response = await http.get(url).catchError((onError){
       pre.remove('OpenFlag');
       _isLoading = false;

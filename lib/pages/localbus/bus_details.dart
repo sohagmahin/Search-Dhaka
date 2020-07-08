@@ -67,8 +67,10 @@ class BusDetails extends StatelessWidget {
   }
 
   _launchURL(String url, BuildContext context) async {
-    if (await canLaunch(url)) {
-      await launch(url);
+    String demoURL= 'http://maps.google.com/maps?saddr=Shyamoli+Bus+Stand&addr=Science+Lab+Bus+Station&daddr=Gabtoli+bus+stand+dhaka';
+    String demoURL2 = 'https://www.google.com/maps/dir/Gabtoli+bus+stand,+dhaka,+Gabtoli/Shyamoli+Bus+Stand,+Mirpur+Road,+Dacca/College+Gate+Bus+Stop,+Mirpur+Road,+Dhaka/Shahbagh,+Dacca/Sadar+Ghat+Bus+Stop,+Dacca/';
+    if (await canLaunch(demoURL2)) {
+      await launch(demoURL2);
     } else {
       showDialog(
           context: context,
@@ -76,7 +78,7 @@ class BusDetails extends StatelessWidget {
                 title: Text('Google Maps Not found!'),
                 content: Text('Install Google Maps Or Chrome Browser!'),
               ));
-      throw 'Could not launch $url';
+      throw 'Could not launch $demoURL2';
     }
   }
 
