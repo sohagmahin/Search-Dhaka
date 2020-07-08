@@ -1,9 +1,9 @@
 class Helper {
  static String listToString(List<String> list) {
     String temp = list.toString();
-    String tempOne = temp.replaceFirst("[", "", 0); //removed the curly brace
+    String tempOne = temp.replaceFirst("[", "", 0); //removed the starting  curly brace
     String tempTwo = tempOne.replaceFirst(
-        "]", "", tempOne.length - 1); // removed the curly brace
+        "]", "", tempOne.length - 1); // removed the ending curly brace
     return tempTwo;
   }
 
