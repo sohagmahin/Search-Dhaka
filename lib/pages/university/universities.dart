@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:local_bus_dhaka_route/widgets/Hospital/hospitalRoundbox.dart'; //used hospital rounded box
+import 'package:url_launcher/url_launcher.dart';
 
 class Universities extends StatelessWidget {
   static const routeName = '/university/universitesPage';
@@ -11,6 +12,7 @@ class Universities extends StatelessWidget {
       picture: "https://i.dawn.com/primary/2016/03/56df20c28d29d.jpg",
       icon:
           'https://upload.wikimedia.org/wikipedia/en/thumb/c/cb/Dhaka_University_logo.svg/1200px-Dhaka_University_logo.svg.png',
+      path: 'University+of+Dhaka',
     ),
     UniversityModel(
       name: "Jahangirnagar University",
@@ -18,6 +20,7 @@ class Universities extends StatelessWidget {
       picture: "https://www.newagebd.com/files/records/news/202001/95552_184.jpg",
       icon:
           'https://assetsds.cdnedge.bluemix.net/sites/default/files/styles/big_2/public/feature/images/ju_logo.jpg?itok=MUyEnGjI',
+      path: 'Jahangirnagar+University',
     ),
     UniversityModel(
       name: "Jagannath University",
@@ -25,6 +28,7 @@ class Universities extends StatelessWidget {
       picture: "https://www.observerbd.com/2015/02/14/1423926928.jpg",
       icon:
           'https://assetsds.cdnedge.bluemix.net/sites/default/files/styles/big_2/public/feature/images/jnu_logo_0_0.jpg?itok=PMOgQjb9',
+      path: 'Jagannath+University',
     ),
   ];
 
@@ -50,6 +54,9 @@ class Universities extends StatelessWidget {
                     location: _universities[index].location,
                     imageURL: _universities[index].picture,
                     iconURL: _universities[index].icon,
+                    callback:(){
+                      _launchURL(path: _universities[index].path);
+                    },
                   ),
                 ),
               );
@@ -90,16 +97,28 @@ Future<bool> _showPopup(BuildContext context, title, subtitle) {
       ));
 }
 
+ void _launchURL({String path}) async {
+  String url = 'https://www.google.com/maps/search/$path/';
+   if(await canLaunch(url)){
+     await launch(url);
+   }
+   else{
+     throw 'could not launch $url';
+   }
+ }
+
 class UniversityModel {
   final String name;
   final String location;
   final String picture;
   final String icon;
+  final String path;
 
   UniversityModel({
     this.name,
     this.location,
     this.picture,
     this.icon,
+    this.path,
   });
 }
