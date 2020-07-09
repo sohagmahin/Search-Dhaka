@@ -7,7 +7,7 @@ class DBhelpers {
     return sql.openDatabase(path.join(dbPath, 'bus_list.db'), version: 1,
         onCreate: (sql.Database db, int version) {
       return db.execute(
-          'CREATE TABLE bus_list (id TEXT PRIMARY KEY,name TEXT,type TEXT,stopageList TEXT,sourceName TEXT,destinationName TEXT,sourceLatitude REAL,sourceLongitude REAL,destinationLatitude REAL,destinationLongitude REAL)');
+          'CREATE TABLE bus_list (id TEXT PRIMARY KEY,name TEXT,type TEXT,stopageList TEXT,sourceName TEXT,destinationName TEXT,sourceLatitude REAL,sourceLongitude REAL,destinationLatitude REAL,destinationLongitude REAL,pathURL TEXT)');
     });
   }
 

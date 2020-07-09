@@ -20,13 +20,13 @@ class BusListProvider extends ChangeNotifier {
 
   List<Bus> _selectedBusList = [];
 
-  bool get result{
+  bool get result {
     return _hasInternet;
   }
+
   bool get isLoading {
     return _isLoading;
   }
-
 
   int get selectedBusCount {
     return _selectedBusList.length;
@@ -83,8 +83,8 @@ class BusListProvider extends ChangeNotifier {
         _isReloaded = false;
       }
     } else {
-        _hasInternet = await DataConnectionChecker().hasConnection;
-      if(_hasInternet == true) {
+      _hasInternet = await DataConnectionChecker().hasConnection;
+      if (_hasInternet == true) {
         pref.setBool('OpenFlag', true);
         await fetchDataFromFirebase(pref);
         insertDataIntoLocalDB();
@@ -101,7 +101,7 @@ class BusListProvider extends ChangeNotifier {
     _isLoading = true;
     notifyListeners();
     String url = 'https://search-dhaka.firebaseio.com/buslist.json';
-    http.Response response = await http.get(url).catchError((onError){
+    http.Response response = await http.get(url).catchError((onError) {
       pre.remove('OpenFlag');
       _isLoading = false;
       _hasInternet = false;
@@ -131,6 +131,7 @@ class BusListProvider extends ChangeNotifier {
           latitude: double.parse(fetchBus['destinationLatitude'].toString()),
           longitude: double.parse(fetchBus['destinationLongitude'].toString()),
         ),
+        pathURL: fetchBus['pathURL'],
       );
       _busList.add(bus);
       print(bus.name);
@@ -152,7 +153,8 @@ class BusListProvider extends ChangeNotifier {
         "sourceLatitude": bus.sourceLocation.latitude,
         "sourceLongitude": bus.sourceLocation.longitude,
         "destinationLatitude": bus.destinationLocation.latitude,
-        "destinationLongitude": bus.destinationLocation.longitude
+        "destinationLongitude": bus.destinationLocation.longitude,
+        "pathURL": bus.pathURL,
       });
     }
   }
@@ -178,6 +180,7 @@ class BusListProvider extends ChangeNotifier {
             placeName: bus['destinationName'],
             latitude: bus['sourceLatitude'],
             longitude: bus['destinationLongitude']),
+        pathURL: bus['pathURL'],
       );
     }).toList();
     print('Retrive the data from local DB');

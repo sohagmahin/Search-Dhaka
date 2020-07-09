@@ -67,10 +67,10 @@ class BusDetails extends StatelessWidget {
   }
 
   _launchURL(String url, BuildContext context) async {
-    String demoURL= 'http://maps.google.com/maps?saddr=Shyamoli+Bus+Stand&addr=Science+Lab+Bus+Station&daddr=Gabtoli+bus+stand+dhaka';
-    String demoURL2 = 'https://www.google.com/maps/dir/Gabtoli+bus+stand,+dhaka,+Gabtoli/Shyamoli+Bus+Stand,+Mirpur+Road,+Dacca/College+Gate+Bus+Stop,+Mirpur+Road,+Dhaka/Shahbagh,+Dacca/Sadar+Ghat+Bus+Stop,+Dacca/';
-    if (await canLaunch(demoURL2)) {
-      await launch(demoURL2);
+//    String demoURL= 'http://maps.google.com/maps?saddr=Shyamoli+Bus+Stand&addr=Science+Lab+Bus+Station&daddr=Gabtoli+bus+stand+dhaka';
+//    String demoURL2 = 'https://www.google.com/maps/dir/Gabtoli+bus+stand,+dhaka,+Gabtoli/Shyamoli+Bus+Stand,+Mirpur+Road,+Dacca/College+Gate+Bus+Stop,+Mirpur+Road,+Dhaka/Shahbagh,+Dacca/Sadar+Ghat+Bus+Stop,+Dacca/';
+    if (await canLaunch(url)) {
+      await launch(url);
     } else {
       showDialog(
           context: context,
@@ -78,7 +78,7 @@ class BusDetails extends StatelessWidget {
                 title: Text('Google Maps Not found!'),
                 content: Text('Install Google Maps Or Chrome Browser!'),
               ));
-      throw 'Could not launch $demoURL2';
+      throw 'Could not launch $url';
     }
   }
 
@@ -87,8 +87,8 @@ class BusDetails extends StatelessWidget {
     String id = ModalRoute.of(context).settings.arguments as String;
     var bus = Provider.of<BusListProvider>(context).findById(id);
 
-    String url =
-        'http://maps.google.com/maps?saddr=${bus.sourceLocation.latitude},${bus.sourceLocation.longitude}&daddr=${bus.destinationLocation.latitude},${bus.destinationLocation.longitude}';
+   // String url ='http://maps.google.com/maps?saddr=${bus.sourceLocation.latitude},${bus.sourceLocation.longitude}&daddr=${bus.destinationLocation.latitude},${bus.destinationLocation.longitude}';
+    String url = 'https://www.google.com/maps/dir/${bus.pathURL}/';
     return Scaffold(
       appBar: AppBar(
         title: Text('Bus details'),
