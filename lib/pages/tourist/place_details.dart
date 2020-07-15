@@ -80,7 +80,7 @@ class _PlaceDetailsState extends State<PlaceDetails> {
             BoxShadow(
                 color: Colors.black,
                 blurRadius: 3,
-                spreadRadius: 2,
+                spreadRadius: 1,
                 offset: Offset(0, -1))
           ],
           borderRadius: BorderRadius.only(
@@ -88,7 +88,8 @@ class _PlaceDetailsState extends State<PlaceDetails> {
             topRight: Radius.circular(25.0),
           ),
 //          gradient: Kgradient,
-          color: Color(0xffE1E2E1),
+//          color: Color(0xffE1E2E1),
+        color: Colors.indigoAccent,
         ),
         width: double.infinity,
         child: Center(
