@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:local_bus_dhaka_route/pages/hospital/hospitallist.dart';
+import 'package:local_bus_dhaka_route/pages/hospital/hospital.dart';
 import 'pages/localbus/main.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';

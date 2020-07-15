@@ -11,7 +11,7 @@ import 'package:local_bus_dhaka_route/pages/train/TrainStation.dart';
 import 'package:local_bus_dhaka_route/pages/hotline/hotline_numbers.dart';
 import 'package:local_bus_dhaka_route/widgets/home_page_drawer.dart';
 
-import 'hospital/hospitallist.dart';
+import 'hospital/hospital.dart';
 
 class HomePage extends StatelessWidget {
   static const routeName = '/';
