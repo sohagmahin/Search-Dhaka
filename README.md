@@ -1,3 +1,4 @@
+![Dart CI/CD](https://github.com/sohagmahin/Search-Dhaka/workflows/Dart%20CI/CD/badge.svg)
 # Search Dhaka
 
 A new Flutter application for findout the local bus,touriest and so on in dhaka city.
