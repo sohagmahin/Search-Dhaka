@@ -38,17 +38,17 @@ class HomePage extends StatelessWidget {
               CustomButton(color: Colors.greenAccent,iconData: FontAwesomeIcons.bus,title: 'Local Bus',onPressed: (){
                 Navigator.of(context).pushNamed(LocalBusMain.routeName);
               },),
-              CustomButton(color: Colors.lightGreen,iconData: FontAwesomeIcons.university,title: 'University',onPressed: (){
-                Navigator.of(context).pushNamed(Universities.routeName);
-              }),
-              CustomButton(color: Colors.blue,iconData: FontAwesomeIcons.hospital,title: 'Hospital',onPressed: (){
-                Navigator.of(context).pushNamed(Hospitals.routeName);
+              CustomButton(color: Colors.blueAccent,iconData: FontAwesomeIcons.train,title: 'Train Station',onPressed: (){
+                Navigator.of(context).pushNamed(TrainStation.routeName);
               }),
               CustomButton(color: Colors.orange,iconData: Icons.place,title: 'Tourist Spot',onPressed: (){
                 Navigator.of(context).pushNamed(Places.routeName);
               }),
-              CustomButton(color: Colors.amber,iconData: FontAwesomeIcons.train,title: 'Train Station',onPressed: (){
-                Navigator.of(context).pushNamed(TrainStation.routeName);
+              CustomButton(color: Colors.lightGreen,iconData: FontAwesomeIcons.university,title: 'University',onPressed: (){
+                Navigator.of(context).pushNamed(Universities.routeName);
+              }),
+              CustomButton(color: Colors.amberAccent,iconData: FontAwesomeIcons.hospital,title: 'Hospital',onPressed: (){
+                Navigator.of(context).pushNamed(Hospitals.routeName);
               }),
               CustomButton(color: Colors.tealAccent,iconData: FontAwesomeIcons.shopify,title: 'Shopping Mall',onPressed: (){
                 Navigator.of(context).pushNamed(ShoppingMalls.routeName);
