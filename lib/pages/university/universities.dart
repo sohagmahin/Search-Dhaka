@@ -55,7 +55,10 @@ class Universities extends StatelessWidget {
                     imageURL: _universities[index].picture,
                     iconURL: _universities[index].icon,
                     callback:(){
-                      _launchURL(path: _universities[index].path);
+                      _launchMapView(path: _universities[index].path);
+                    },
+                    callbackTwo: (){
+                      _launchDirMapView(path: _universities[index].path);
                     },
                   ),
                 ),
@@ -97,8 +100,18 @@ Future<bool> _showPopup(BuildContext context, title, subtitle) {
       ));
 }
 
- void _launchURL({String path}) async {
+ void _launchMapView({String path}) async {
   String url = 'https://www.google.com/maps/search/$path/';
+   if(await canLaunch(url)){
+     await launch(url);
+   }
+   else{
+     throw 'could not launch $url';
+   }
+ }
+
+ void _launchDirMapView({String path}) async {
+  String url = 'https://www.google.com/maps/dir//$path/';
    if(await canLaunch(url)){
      await launch(url);
    }

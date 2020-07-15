@@ -10,8 +10,9 @@ class RoundedBox extends StatelessWidget {
   final iconURL;
   double radius = 20;
   final Function callback;
+  final Function callbackTwo;
 
-  RoundedBox({this.name, this.location, this.imageURL, this.iconURL,this.callback});
+  RoundedBox({this.name, this.location, this.imageURL, this.iconURL,this.callback,this.callbackTwo});
 
   @override
   Widget build(BuildContext context) {
@@ -121,7 +122,7 @@ class RoundedBox extends StatelessWidget {
                         SizedBox(
                           height: 05,
                         ),
-                        buildPairNavLocButton(originalWidth: _originalWidth,onPressed: callback)
+                        buildPairNavLocButton(originalWidth: _originalWidth,onPressed: callback,onPressedTwo: callbackTwo)
                       ],
                     ),
                   ),
@@ -132,7 +133,7 @@ class RoundedBox extends StatelessWidget {
         ));
   }
 
-  Container buildPairNavLocButton({double originalWidth, double uRadius,Function onPressed}) {
+  Container buildPairNavLocButton({double originalWidth, double uRadius,Function onPressed,Function onPressedTwo}) {
     return Container(
         padding: EdgeInsets.only(left: originalWidth * 0.35, bottom: 0),
         //left 155
@@ -147,9 +148,7 @@ class RoundedBox extends StatelessWidget {
               width: 05,
             ),
             _buildButton(
-              onPressed: () {
-                print('pressed navigation button');
-              },
+              onPressed: onPressedTwo,
               icons: Icons.navigation,
               colors: Colors.blue,
               radius: uRadius,
