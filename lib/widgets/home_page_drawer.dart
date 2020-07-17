@@ -11,7 +11,7 @@ class HomePageDrawer extends StatelessWidget {
           child: Column(
             children: <Widget>[
               AppBar(
-                title: Text('Search Dhaka'),
+                title: Text('Explore Dhaka City'),
                 automaticallyImplyLeading: false,
                 centerTitle: true,
               ),
@@ -88,7 +88,7 @@ class HomePageDrawer extends StatelessWidget {
       context: context,
       builder: (context) => AboutDialog(
         applicationVersion: 'version 1.0.0',
-        applicationName: 'Search Dhaka',
+        applicationName: 'Explore Dhaka City',
         children: <Widget>[
           Text('All Solution in one place.'),
           SizedBox(
